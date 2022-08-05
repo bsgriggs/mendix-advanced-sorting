@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.advancedsorting.AdvancedSorting" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Advanced Sorting</name>
+    <description>Reusable widget to encapsulate the logic needed to manually do sorting</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <systemProperty key="Visibility"></systemProperty>
+            <property key="headerContent" type="widgets" required="true">
+                <caption>Header Content</caption>
+                <description>The content shown in the header</description>
+            </property>
+            <property key="attributeName" type="string" required="true">
+                <caption>Attribute Name</caption>
+                <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+            </property>
+            <property key="ascendingIcon" type="icon" required="false">
+                <caption>Ascending Icon</caption>
+                <description>Icon shown next to the header</description>
+            </property>
+            <property key="descendingIcon" type="icon" required="false">
+                <caption>Descending Icon</caption>
+                <description>Icon shown next to the header</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Data">
+            <property key="refreshAction" type="action" required="true">
+                <caption>Refresh Action</caption>
+                <description>Must be a Microflow or Nanoflow that has a Refresh in Client on the parent dataview's object</description>
+            </property>
+            <property key="sortAttribute" type="attribute" required="true">
+                <caption>Sort Attribute</caption>
+                <description>Attribute to set the string, should be on the parent data view's object</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="sortAscending" type="attribute" required="true">
+                <caption>Sort Ascending</caption>
+                <description>Attribute to determin the direction of the sorting, should be a boolean on the parent data view's object. True = ascending, False = descending</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes> 
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
