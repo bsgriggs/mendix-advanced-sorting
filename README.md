@@ -1,19 +1,28 @@
 ## AdvancedSorting
-[Reusable widget to encapsulate the logic needed to manually do sorting]
+Reusable widget to encapsulate the math required to manually do pagination. Most useful when getting data from an API that allows sorting (e.g. https://cars.com/users?sort_by=year&order=desc).
 
-## Features
-[feature highlights]
+![Overview](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/advancedSorting.png)
 
-## Usage
+## Features  
+- Drag and drop method of setting sorting attributes
+- Ability to customize the icons displayed 
+- Accepts a Sort Attribute string and a Sort Ascending boolean
+- Ability to use any Mendix content for the header
+
+## Limitations  
+
+## Usage  
 [step by step instructions]
 
-## Demo project
-[link to sandbox]
+## Configuration Details  
 
-## Issues, suggestions and feature requests
-[link to GitHub issues]
+## Demo project  
+https://widgettesting105-sandbox.mxapps.io/p/advanced-sorting
 
-## Development and contribution
+## Issues, suggestions and feature requests  
+https://github.com/bsgriggs/mendix-advanced-sorting/issues
+
+## Development and contribution  
 
 1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing `npm -v`, execute: `npm install --legacy-peer-deps`.
 1. Run `npm start` to watch for code changes. On every change:
