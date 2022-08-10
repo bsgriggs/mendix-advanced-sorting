@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendix.advancedsorting.AdvancedSorting" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
-        supportedPlatform="Web"
-        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="mendix.advancedsorting.AdvancedSorting" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Advanced Sorting</name>
     <description>Reusable widget to encapsulate the logic needed to manually do sorting</description>
-    <icon/>
+    <icon />
     <properties>
         <propertyGroup caption="General">
             <systemProperty key="Visibility"></systemProperty>
@@ -16,6 +13,43 @@
             <property key="attributeName" type="string" required="true">
                 <caption>Attribute Name</caption>
                 <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+            </property>
+            <property key="displayStyle" type="enumeration" defaultValue="header">
+                <caption>Display Style</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="header">Header</enumerationValue>
+                    <enumerationValue key="dropdown">Dropdown</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="dropdownValues" type="object" isList="true" required="true">
+                <caption>Dropdown Values</caption>
+                <description></description>
+                <properties>
+                    <propertyGroup caption="Dropdown Option Properties">
+                        <property key="optionCaption" type="expression">
+                            <caption>Option Caption</caption>
+                            <description>The text displayed to the user in the dropdown</description>
+                            <returnType type="String" />
+                        </property>
+                        <property key="dropdownAttributeValue" type="string" required="true">
+                            <caption>Attribute Name</caption>
+                            <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+                        </property>
+                        <property key="setSortAscending" type="boolean" defaultValue="false">
+                            <caption>Set Sort Ascending?</caption>
+                            <description>Should the Sort Ascending attribute be set by this option?</description>
+                        </property>
+                        <property key="dropdownSortAscending" type="enumeration" defaultValue="true">
+                            <caption>Sort Ascending</caption>
+                            <description>The value to set the Sort Ascending attribute when this option is selected</description>
+                            <enumerationValues>
+                                <enumerationValue key="true">True</enumerationValue>
+                                <enumerationValue key="false">False</enumerationValue>
+                            </enumerationValues>
+                        </property>
+                    </propertyGroup>
+                </properties>
             </property>
             <property key="ascendingIcon" type="icon" required="false">
                 <caption>Ascending Icon</caption>
@@ -43,7 +77,7 @@
                 <description>Attribute to determin the direction of the sorting, should be a boolean on the parent data view's object. True = ascending, False = descending</description>
                 <attributeTypes>
                     <attributeType name="Boolean" />
-                </attributeTypes> 
+                </attributeTypes>
             </property>
         </propertyGroup>
     </properties>

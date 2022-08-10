@@ -1,5 +1,6 @@
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
-import { StructurePreviewProps, RowLayoutProps, ContainerProps, TextProps, DropZoneProps } from "./utils/PageEditor";
+import { hidePropertiesIn, hidePropertyIn } from "./utils/PageEditorUtils";
+// import { StructurePreviewProps, RowLayoutProps, ContainerProps, TextProps, DropZoneProps } from "./utils/PageEditor";
 
 export type Properties = PropertyGroup[];
 
@@ -39,6 +40,21 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
         delete defaultProperties.properties.myOtherProperty;
     }
     */
+
+    switch (_values.displayStyle) {
+        case "header":
+            hidePropertiesIn(defaultProperties,_values, ["dropdownValues"]);
+            break;
+        case "dropdown":
+            hidePropertiesIn(defaultProperties,_values, ["headerContent", "attributeName", "ascendingIcon", "descendingIcon"]);
+            _values.dropdownValues.forEach((dropdownValue, index)=>{
+                if (dropdownValue.setSortAscending === false){
+                    hidePropertyIn(defaultProperties, _values, "dropdownValues", index, "dropdownSortAscending");
+                }
+            })
+            break;
+    }
+
     return defaultProperties;
 }
 
@@ -65,62 +81,62 @@ export function check(_values: AdvancedSortingPreviewProps): Problem[] {
     return errors;
 }
 
-export function getPreview(values: AdvancedSortingPreviewProps, isDarkMode: boolean): StructurePreviewProps | null {
-    const titleHeader: RowLayoutProps = {
-        type: "RowLayout",
-        columnSize: "grow",
-        backgroundColor: isDarkMode ? "#4F4F4F" : "#F5F5F5",
-        borderWidth: 1,
-        children: [
-            {
-                type: "Container",
-                padding: 4,
-                children: [
-                    {
-                        type: "Text",
-                        content: "Advanced Sorting",
-                        fontColor: isDarkMode ? "#DEDEDE" : "#6B707B"
-                    } as TextProps
-                ]
-            }
-        ]
-    };
-    const messageContent = {
-        type: "RowLayout",
-        columnSize: "grow",
-        padding: 0,
-        children: [
-            {
-                type: "Container",
-                padding: 4,
-                children: [
-                    {
-                        type: "Text",
-                        content: values.attributeName
-                            ? "Sorting: " + values.attributeName
-                            : "Enter the attribute's name",
-                        fontSize: values.attributeName ? 10 : undefined,
-                        fontColor: values.attributeName
-                            ? isDarkMode
-                                ? "#DEDEDE"
-                                : "#000000"
-                            : isDarkMode
-                            ? "#A4A4A4"
-                            : "#6B707B"
-                    }
-                ]
-            }
-        ]
-    } as RowLayoutProps;
-    const headerContent = {
-        type: "DropZone",
-        property: values.headerContent,
-        placeholder: "Header Content",
-        grow: 1
-    } as DropZoneProps;
-    return {
-        type: "Container",
-        borders: true,
-        children: [titleHeader, messageContent, headerContent]
-    } as ContainerProps;
-}
+// export function getPreview(values: AdvancedSortingPreviewProps, isDarkMode: boolean): StructurePreviewProps | null {
+//     const titleHeader: RowLayoutProps = {
+//         type: "RowLayout",
+//         columnSize: "grow",
+//         backgroundColor: isDarkMode ? "#4F4F4F" : "#F5F5F5",
+//         borderWidth: 1,
+//         children: [
+//             {
+//                 type: "Container",
+//                 padding: 4,
+//                 children: [
+//                     {
+//                         type: "Text",
+//                         content: "Advanced Sorting",
+//                         fontColor: isDarkMode ? "#DEDEDE" : "#6B707B"
+//                     } as TextProps
+//                 ]
+//             }
+//         ]
+//     };
+//     const messageContent = {
+//         type: "RowLayout",
+//         columnSize: "grow",
+//         padding: 0,
+//         children: [
+//             {
+//                 type: "Container",
+//                 padding: 4,
+//                 children: [
+//                     {
+//                         type: "Text",
+//                         content: values.attributeName
+//                             ? "Sorting: " + values.attributeName
+//                             : "Enter the attribute's name",
+//                         fontSize: values.attributeName ? 10 : undefined,
+//                         fontColor: values.attributeName
+//                             ? isDarkMode
+//                                 ? "#DEDEDE"
+//                                 : "#000000"
+//                             : isDarkMode
+//                             ? "#A4A4A4"
+//                             : "#6B707B"
+//                     } 
+//                 ]
+//             }
+//         ]
+//     } as RowLayoutProps;
+//     const headerContent = {
+//         type: "DropZone",
+//         property: values.headerContent,
+//         placeholder: "Header Content",
+//         grow: 1
+//     } as DropZoneProps;
+//     return {
+//         type: "Container",
+//         borders: true,
+//         children: [titleHeader, messageContent, headerContent]
+//     } as ContainerProps;
+// }
