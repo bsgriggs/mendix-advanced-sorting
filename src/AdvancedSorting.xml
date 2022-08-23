@@ -33,6 +33,11 @@
                             <description>The text displayed to the user in the dropdown</description>
                             <returnType type="String" />
                         </property>
+                        <property key="defaultOption" type="expression" defaultValue="false">
+                            <caption>Default Option?</caption>
+                            <description>Should this option be selected automatically when the page loads? If none are set, then the first Dropdown Value will be used.</description>
+                            <returnType type="Boolean" />
+                        </property>
                         <property key="dropdownAttributeValue" type="string" required="true">
                             <caption>Attribute Name</caption>
                             <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>

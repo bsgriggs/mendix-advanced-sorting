@@ -1,6 +1,10 @@
-.advanced-sorting {
+.advanced-sorting-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+}
+
+.advanced-sorting-dropdown {
+    
 }

@@ -60,20 +60,18 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
 
 export function check(_values: AdvancedSortingPreviewProps): Problem[] {
     const errors: Problem[] = [];
-    // Add errors to the above array to throw errors in Studio and Studio Pro.
-    /* Example
-    if (values.myProperty !== "custom") {
-        errors.push({
-            property: `myProperty`,
-            message: `The value of 'myProperty' is different of 'custom'.`,
-            url: "https://github.com/myrepo/mywidget"
-        });
-    }
-    */
     if (_values.refreshAction === null) {
         errors.push({
             property: `refreshAction`,
             message: `Refresh action is required. Should be a Microflow with 'Refresh in Client' on the parent DataView's object`,
+            url: "https://github.com/bsgriggs/mendix-advanced-sorting/blob/master/README.md"
+        });
+    }
+
+    if (_values.dropdownValues.filter(dropdownValue => dropdownValue.defaultOption === "true").length > 1) {
+        errors.push({
+            property: `dropdownValues`,
+            message: `There can only be 1 dropdown value as the default option`,
             url: "https://github.com/bsgriggs/mendix-advanced-sorting/blob/master/README.md"
         });
     }

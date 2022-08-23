@@ -12,12 +12,14 @@ export type DropdownSortAscendingEnum = "true" | "false";
 
 export interface DropdownValuesType {
     optionCaption: DynamicValue<string>;
+    defaultOption: DynamicValue<boolean>;
     dropdownAttributeValue: string;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
 export interface DropdownValuesPreviewType {
     optionCaption: string;
+    defaultOption: string;
     dropdownAttributeValue: string;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
@@ -43,8 +45,8 @@ export interface AdvancedSortingPreviewProps {
     attributeName: string;
     displayStyle: DisplayStyleEnum;
     dropdownValues: DropdownValuesPreviewType[];
-    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
     refreshAction: {} | null;
     sortAttribute: string;
     sortAscending: string;

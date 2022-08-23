@@ -6,24 +6,27 @@ import { Header } from "./components/Header";
 import { Dropdown } from "./components/Dropdown";
 
 export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElement {
-    const isCurrentlySorted = props.attributeName === props.sortAttribute.value;
-
     if (props.sortAscending.status === ValueStatus.Available && props.sortAttribute.status === ValueStatus.Available) {
-        const handleClick = (): void => {
-            if (isCurrentlySorted) {
-                props.sortAscending.setValue(!props.sortAscending.value);
-            } else {
-                props.sortAttribute.setValue(props.attributeName);
-            }
-            props.refreshAction?.execute();
-        };
-
         return (
-            <div className="advanced-sorting" onClick={handleClick}>
+            <div
+                className={props.displayStyle === "header" ? "advanced-sorting-header" : "advanced-sorting-dropdown"}
+                onClick={
+                    props.displayStyle === "header"
+                        ? (): void => {
+                              if (props.attributeName === props.sortAttribute.value) {
+                                  props.sortAscending.setValue(!props.sortAscending.value);
+                              } else {
+                                  props.sortAttribute.setValue(props.attributeName);
+                              }
+                              props.refreshAction?.execute();
+                          }
+                        : undefined
+                }
+            >
                 {props.displayStyle === "header" && (
                     <Header
                         headerContent={props.headerContent}
-                        isCurrentlySorted={isCurrentlySorted}
+                        isCurrentlySorted={props.attributeName === props.sortAttribute.value}
                         sortAscending={props.sortAscending.value as boolean}
                         ascendingIcon={props.ascendingIcon}
                         descendingIcon={props.descendingIcon}
@@ -31,10 +34,11 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
                 )}
                 {props.displayStyle === "dropdown" && (
                     <Dropdown
-                        sortAttribute={props.sortAttribute.value as string}
                         dropdownValues={props.dropdownValues}
-                        selectOption={(sortAttribute: string, sortAscending: boolean) => {
-                            props.sortAttribute.setValue(sortAttribute);
+                        selectOption={(sortAttribute: string, sortAscending: boolean): void => {
+                            if (props.sortAttribute.value !== sortAttribute) {
+                                props.sortAttribute.setValue(sortAttribute);
+                            }
                             if ((props.sortAscending.value as boolean) !== sortAscending) {
                                 props.sortAscending.setValue(sortAscending);
                             }
