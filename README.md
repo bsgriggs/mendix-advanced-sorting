@@ -1,13 +1,15 @@
 ## AdvancedSorting
-Reusable widget to encapsulate the math required to manually do pagination. Most useful when getting data from an API that allows sorting (e.g. https://cars.com/users?sort_by=year&order=desc).
+Reusable widget to encapsulate the math required to manually do sorting. Most useful when getting data from an API that allows sorting or writing SQL / OQL queries (e.g. https://cars.com/users?sort_by=year&order=desc). 
 
 ![Overview](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/advancedSorting.png)
 
 ## Features  
+- Offers Headers and Dropdown sorting methods
 - Drag and drop method of setting sorting attributes
 - Ability to customize the icons displayed 
 - Accepts a Sort Attribute string and a Sort Ascending boolean
 - Ability to use any Mendix content for the header
+- Ability to configure your own list of dropdown values
 
 ## Limitations  
 
