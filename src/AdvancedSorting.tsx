@@ -19,8 +19,8 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
                     dropdownValues = props.dropdownValues.map(dropdownValue => {
                         return {
                             caption: dropdownValue.optionCaption.value as string,
-                            isDefault: dropdownValue.defaultOption.value as boolean,
-                            sortAttribute: dropdownValue.dropdownAttributeValue,
+                            isDefault: dropdownValue.dropdownDefaultOption.value as boolean,
+                            sortAttribute: dropdownValue.dropdownAttributeName,
                             sortAscending: dropdownValue.dropdownSortAscending === "true"
                         };
                     });
@@ -31,7 +31,7 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
                             return {
                                 caption: props.dynamicCaption.get(dynamicValue).value as string,
                                 isDefault: props.dynamicDefaultOption.get(dynamicValue).value as boolean,
-                                sortAttribute: props.dynamicAttributeValue.get(dynamicValue).value as string,
+                                sortAttribute: props.dynamicAttributeName.get(dynamicValue).value as string,
                                 sortAscending: props.dynamicSortAscending.get(dynamicValue).value as boolean
                             };
                         });

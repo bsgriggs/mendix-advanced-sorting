@@ -45,7 +45,7 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
         case "header":
             hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource"]);
             hidePropertiesIn(defaultProperties, _values, [
-                "dynamicAttributeValue",
+                "dynamicAttributeName",
                 "dynamicCaption",
                 "dynamicDatasource",
                 "dynamicDefaultOption",
@@ -62,7 +62,7 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
                         "descendingIcon"
                     ]);
                     hidePropertiesIn(defaultProperties, _values, [
-                        "dynamicAttributeValue",
+                        "dynamicAttributeName",
                         "dynamicCaption",
                         "dynamicDatasource",
                         "dynamicDefaultOption",
@@ -96,7 +96,7 @@ export function check(_values: AdvancedSortingPreviewProps): Problem[] {
         });
     }
 
-    if (_values.dropdownValues.filter(dropdownValue => dropdownValue.defaultOption === "true").length > 1) {
+    if (_values.dropdownValues.filter(dropdownValue => dropdownValue.dropdownDefaultOption === "true").length > 1) {
         errors.push({
             property: `dropdownValues`,
             message: `There can only be 1 dropdown value as the default option`,

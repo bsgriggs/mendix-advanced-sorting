@@ -9,7 +9,7 @@
             <systemProperty key="Visibility"></systemProperty>
             <property key="headerContent" type="widgets" required="true">
                 <caption>Header Content</caption>
-                <description>The content shown in the header</description>
+                <description>The content shown as the header</description>
             </property>
             <property key="displayStyle" type="enumeration" defaultValue="header">
                 <caption>Display Style</caption>
@@ -31,22 +31,30 @@
                 <caption>Attribute Name</caption>
                 <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
             </property>
+            <property key="ascendingIcon" type="icon" required="false">
+                <caption>Ascending Icon</caption>
+                <description>Icon shown next to the header</description>
+            </property>
+            <property key="descendingIcon" type="icon" required="false">
+                <caption>Descending Icon</caption>
+                <description>Icon shown next to the header</description>
+            </property>
             <property key="dropdownValues" type="object" isList="true" required="true">
                 <caption>Dropdown Values</caption>
                 <description></description>
                 <properties>
                     <propertyGroup caption="Dropdown Option Properties">
                         <property key="optionCaption" type="expression">
-                            <caption>Option Caption</caption>
-                            <description>The text displayed to the user in the dropdown</description>
+                            <caption>Caption</caption>
+                            <description>The text in the dropdown</description>
                             <returnType type="String" />
                         </property>
-                        <property key="defaultOption" type="expression" defaultValue="false">
-                            <caption>Default Option?</caption>
-                            <description>Should this option be selected automatically when the page loads? If none are set, then the first Dropdown Value will be used.</description>
+                        <property key="dropdownDefaultOption" type="expression" defaultValue="false">
+                            <caption>Default?</caption>
+                            <description>Should this option be selected automatically when the page loads?</description>
                             <returnType type="Boolean" />
                         </property>
-                        <property key="dropdownAttributeValue" type="string" required="true">
+                        <property key="dropdownAttributeName" type="string" required="true">
                             <caption>Attribute Name</caption>
                             <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
                         </property>
@@ -61,14 +69,6 @@
                     </propertyGroup>
                 </properties>
             </property>
-            <property key="ascendingIcon" type="icon" required="false">
-                <caption>Ascending Icon</caption>
-                <description>Icon shown next to the header</description>
-            </property>
-            <property key="descendingIcon" type="icon" required="false">
-                <caption>Descending Icon</caption>
-                <description>Icon shown next to the header</description>
-            </property>
         </propertyGroup>
         <propertyGroup caption="Dynamic Dropdown">
             <property key="dynamicDatasource" type="datasource" isList="true" required="true">
@@ -76,20 +76,20 @@
                  <description>Should be a Microflow or Nanoflow that returns a list of objects with the following attributes</description>
             </property>
             <property key="dynamicCaption" type="attribute" dataSource="dynamicDatasource" required="true">
-                <caption>Option Caption</caption>
+                <caption>Caption</caption>
                 <description>The text displayed to the user in the dropdown</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
             <property key="dynamicDefaultOption" type="attribute" dataSource="dynamicDatasource" required="true">
-                <caption>Default Option</caption>
-                <description>Should this option be selected automatically when the page loads? If none are set, then the first Dropdown Value will be used.</description>
+                <caption>Default?</caption>
+                <description>Should this option be selected automatically when the page loads?</description>
                 <attributeTypes>
                     <attributeType name="Boolean" />
                 </attributeTypes>
             </property>
-            <property key="dynamicAttributeValue" type="attribute" dataSource="dynamicDatasource" required="true">
+            <property key="dynamicAttributeName" type="attribute" dataSource="dynamicDatasource" required="true">
                 <caption>Attribute Name</caption>
                 <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
                 <attributeTypes>
@@ -111,14 +111,14 @@
             </property>
             <property key="sortAttribute" type="attribute" required="true">
                 <caption>Sort Attribute</caption>
-                <description>Attribute to set the string, should be on the parent data view's object</description>
+                <description>Attribute as set the Attribute Name when the user clicks the header or dropdown</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
             <property key="sortAscending" type="attribute" required="true">
                 <caption>Sort Ascending</caption>
-                <description>Attribute to determin the direction of the sorting, should be a boolean on the parent data view's object. True = ascending, False = descending</description>
+                <description>Attribute to determine the direction of the sorting, should be a boolean on the parent data view's object. True = ascending, False = descending</description>
                 <attributeTypes>
                     <attributeType name="Boolean" />
                 </attributeTypes>

@@ -14,15 +14,15 @@ export type DropdownSortAscendingEnum = "true" | "false";
 
 export interface DropdownValuesType {
     optionCaption: DynamicValue<string>;
-    defaultOption: DynamicValue<boolean>;
-    dropdownAttributeValue: string;
+    dropdownDefaultOption: DynamicValue<boolean>;
+    dropdownAttributeName: string;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
 export interface DropdownValuesPreviewType {
     optionCaption: string;
-    defaultOption: string;
-    dropdownAttributeValue: string;
+    dropdownDefaultOption: string;
+    dropdownAttributeName: string;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
@@ -34,13 +34,13 @@ export interface AdvancedSortingContainerProps {
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;
     attributeName: string;
-    dropdownValues: DropdownValuesType[];
     ascendingIcon?: DynamicValue<WebIcon>;
     descendingIcon?: DynamicValue<WebIcon>;
+    dropdownValues: DropdownValuesType[];
     dynamicDatasource: ListValue;
     dynamicCaption: ListAttributeValue<string>;
     dynamicDefaultOption: ListAttributeValue<boolean>;
-    dynamicAttributeValue: ListAttributeValue<string>;
+    dynamicAttributeName: ListAttributeValue<string>;
     dynamicSortAscending: ListAttributeValue<boolean>;
     refreshAction?: ActionValue;
     sortAttribute: EditableValue<string>;
@@ -53,13 +53,13 @@ export interface AdvancedSortingPreviewProps {
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;
     attributeName: string;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     dropdownValues: DropdownValuesPreviewType[];
-    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
     dynamicDatasource: {} | { type: string } | null;
     dynamicCaption: string;
     dynamicDefaultOption: string;
-    dynamicAttributeValue: string;
+    dynamicAttributeName: string;
     dynamicSortAscending: string;
     refreshAction: {} | null;
     sortAttribute: string;
