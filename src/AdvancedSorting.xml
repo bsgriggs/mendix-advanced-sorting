@@ -11,10 +11,6 @@
                 <caption>Header Content</caption>
                 <description>The content shown in the header</description>
             </property>
-            <property key="attributeName" type="string" required="true">
-                <caption>Attribute Name</caption>
-                <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
-            </property>
             <property key="displayStyle" type="enumeration" defaultValue="header">
                 <caption>Display Style</caption>
                 <description></description>
@@ -22,6 +18,18 @@
                     <enumerationValue key="header">Header</enumerationValue>
                     <enumerationValue key="dropdown">Dropdown</enumerationValue>
                 </enumerationValues>
+            </property>
+            <property key="dropdownSource" type="enumeration" defaultValue="static">
+                <caption>Dropdown Source</caption>
+                <description>Configure a static list of dropdown values or get the dropdown's values from a microflow</description>
+                <enumerationValues>
+                    <enumerationValue key="static">Static</enumerationValue>
+                    <enumerationValue key="dynamic">Dynamic</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="attributeName" type="string" required="true">
+                <caption>Attribute Name</caption>
+                <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
             </property>
             <property key="dropdownValues" type="object" isList="true" required="true">
                 <caption>Dropdown Values</caption>
@@ -60,6 +68,40 @@
             <property key="descendingIcon" type="icon" required="false">
                 <caption>Descending Icon</caption>
                 <description>Icon shown next to the header</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Dynamic Dropdown">
+            <property key="dynamicDatasource" type="datasource" isList="true" required="true">
+                <caption>Dynamic Data Source</caption>
+                 <description>Should be a Microflow or Nanoflow that returns a list of objects with the following attributes</description>
+            </property>
+            <property key="dynamicCaption" type="attribute" dataSource="dynamicDatasource" required="true">
+                <caption>Option Caption</caption>
+                <description>The text displayed to the user in the dropdown</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="dynamicDefaultOption" type="attribute" dataSource="dynamicDatasource" required="true">
+                <caption>Default Option</caption>
+                <description>Should this option be selected automatically when the page loads? If none are set, then the first Dropdown Value will be used.</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
+            </property>
+            <property key="dynamicAttributeValue" type="attribute" dataSource="dynamicDatasource" required="true">
+                <caption>Attribute Name</caption>
+                <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+            <property key="dynamicSortAscending" type="attribute" dataSource="dynamicDatasource"  required="true">
+                <caption>Sort Ascending</caption>
+                <description>The value to set the Sort Ascending attribute when this option is selected</description>
+                <attributeTypes>
+                    <attributeType name="Boolean" />
+                </attributeTypes>
             </property>
         </propertyGroup>
         <propertyGroup caption="Data">

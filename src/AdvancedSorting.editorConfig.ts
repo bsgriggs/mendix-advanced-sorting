@@ -43,15 +43,43 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
 
     switch (_values.displayStyle) {
         case "header":
-            hidePropertiesIn(defaultProperties, _values, ["dropdownValues"]);
+            hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource"]);
+            hidePropertiesIn(defaultProperties, _values, [
+                "dynamicAttributeValue",
+                "dynamicCaption",
+                "dynamicDatasource",
+                "dynamicDefaultOption",
+                "dynamicSortAscending"
+            ]);
             break;
         case "dropdown":
-            hidePropertiesIn(defaultProperties, _values, [
-                "headerContent",
-                "attributeName",
-                "ascendingIcon",
-                "descendingIcon"
-            ]);
+            switch (_values.dropdownSource) {
+                case "static":
+                    hidePropertiesIn(defaultProperties, _values, [
+                        "headerContent",
+                        "attributeName",
+                        "ascendingIcon",
+                        "descendingIcon"
+                    ]);
+                    hidePropertiesIn(defaultProperties, _values, [
+                        "dynamicAttributeValue",
+                        "dynamicCaption",
+                        "dynamicDatasource",
+                        "dynamicDefaultOption",
+                        "dynamicSortAscending"
+                    ]);
+                    break;
+                case "dynamic":
+                    hidePropertiesIn(defaultProperties, _values, ["dropdownValues"]);
+                    hidePropertiesIn(defaultProperties, _values, [
+                        "headerContent",
+                        "attributeName",
+                        "ascendingIcon",
+                        "descendingIcon"
+                    ]);
+                    break;
+            }
+
             break;
     }
 

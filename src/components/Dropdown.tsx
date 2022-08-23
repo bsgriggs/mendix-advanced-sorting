@@ -1,24 +1,23 @@
 import { ReactElement, createElement, ChangeEvent, useState, useEffect } from "react";
-import { DropdownValuesType } from "typings/AdvancedSortingProps";
+import { DropdownValue } from "typings";
 
 interface DropdownProps {
-    dropdownValues: DropdownValuesType[];
+    dropdownValues: DropdownValue[];
     selectOption: (sortAttribute: string, sortAscending: boolean) => void;
 }
 
 export function Dropdown(props: DropdownProps): ReactElement {
-    const handleOnSelect = (dropdownValue: DropdownValuesType): void => {
+    const handleOnSelect = (dropdownValue: DropdownValue): void => {
         setCurrentValue(dropdownValue);
-        props.selectOption(dropdownValue.dropdownAttributeValue, dropdownValue.dropdownSortAscending === "true");
+        props.selectOption(dropdownValue.sortAttribute, dropdownValue.sortAscending);
     };
     const defaultOption =
-        props.dropdownValues.find(dropdownValue => dropdownValue.defaultOption.value === true) ||
-        props.dropdownValues[0];
+        props.dropdownValues.find(dropdownValue => dropdownValue.isDefault) || props.dropdownValues[0];
     useEffect(() => {
         handleOnSelect(defaultOption);
     }, [defaultOption]);
 
-    const [currentValue, setCurrentValue] = useState<DropdownValuesType>(defaultOption);
+    const [currentValue, setCurrentValue] = useState<DropdownValue>(defaultOption);
 
     return (
         <select
@@ -26,20 +25,19 @@ export function Dropdown(props: DropdownProps): ReactElement {
             aria-haspopup="listbox"
             onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 const dropdownValue =
-                    props.dropdownValues.find(
-                        dropdownValue => dropdownValue.optionCaption.value === event.target.value
-                    ) || props.dropdownValues[0];
+                    props.dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||
+                    props.dropdownValues[0];
                 handleOnSelect(dropdownValue);
             }}
-            value={currentValue?.optionCaption.value}
+            value={currentValue?.caption}
         >
             {props.dropdownValues.map((dropdownValue, index) => (
                 <option
                     key={index}
-                    value={dropdownValue.optionCaption.value}
-                    aria-selected={dropdownValue.dropdownAttributeValue === currentValue?.dropdownAttributeValue}
+                    value={dropdownValue.caption}
+                    aria-selected={dropdownValue.caption === currentValue.caption}
                 >
-                    {dropdownValue.optionCaption.value}
+                    {dropdownValue.caption}
                 </option>
             ))}
         </select>
