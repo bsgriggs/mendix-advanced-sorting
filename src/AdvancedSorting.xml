@@ -5,6 +5,7 @@
     <icon />
     <properties>
         <propertyGroup caption="General">
+            <systemProperty key="Label"></systemProperty>
             <systemProperty key="Visibility"></systemProperty>
             <property key="headerContent" type="widgets" required="true">
                 <caption>Header Content</caption>
@@ -35,10 +36,6 @@
                         <property key="dropdownAttributeValue" type="string" required="true">
                             <caption>Attribute Name</caption>
                             <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
-                        </property>
-                        <property key="setSortAscending" type="boolean" defaultValue="false">
-                            <caption>Set Sort Ascending?</caption>
-                            <description>Should the Sort Ascending attribute be set by this option?</description>
                         </property>
                         <property key="dropdownSortAscending" type="enumeration" defaultValue="true">
                             <caption>Sort Ascending</caption>

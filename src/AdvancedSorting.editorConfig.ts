@@ -1,5 +1,5 @@
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
-import { hidePropertiesIn, hidePropertyIn } from "./utils/PageEditorUtils";
+import { hidePropertiesIn } from "./utils/PageEditorUtils";
 // import { StructurePreviewProps, RowLayoutProps, ContainerProps, TextProps, DropZoneProps } from "./utils/PageEditor";
 
 export type Properties = PropertyGroup[];
@@ -43,15 +43,15 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
 
     switch (_values.displayStyle) {
         case "header":
-            hidePropertiesIn(defaultProperties,_values, ["dropdownValues"]);
+            hidePropertiesIn(defaultProperties, _values, ["dropdownValues"]);
             break;
         case "dropdown":
-            hidePropertiesIn(defaultProperties,_values, ["headerContent", "attributeName", "ascendingIcon", "descendingIcon"]);
-            _values.dropdownValues.forEach((dropdownValue, index)=>{
-                if (dropdownValue.setSortAscending === false){
-                    hidePropertyIn(defaultProperties, _values, "dropdownValues", index, "dropdownSortAscending");
-                }
-            })
+            hidePropertiesIn(defaultProperties, _values, [
+                "headerContent",
+                "attributeName",
+                "ascendingIcon",
+                "descendingIcon"
+            ]);
             break;
     }
 
@@ -123,7 +123,7 @@ export function check(_values: AdvancedSortingPreviewProps): Problem[] {
 //                             : isDarkMode
 //                             ? "#A4A4A4"
 //                             : "#6B707B"
-//                     } 
+//                     }
 //                 ]
 //             }
 //         ]

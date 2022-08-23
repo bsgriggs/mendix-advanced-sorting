@@ -3,7 +3,7 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { ComponentType, CSSProperties, ReactNode } from "react";
+import { ComponentType, ReactNode } from "react";
 import { ActionValue, DynamicValue, EditableValue, WebIcon } from "mendix";
 
 export type DisplayStyleEnum = "header" | "dropdown";
@@ -13,22 +13,19 @@ export type DropdownSortAscendingEnum = "true" | "false";
 export interface DropdownValuesType {
     optionCaption: DynamicValue<string>;
     dropdownAttributeValue: string;
-    setSortAscending: boolean;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
 export interface DropdownValuesPreviewType {
     optionCaption: string;
     dropdownAttributeValue: string;
-    setSortAscending: boolean;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
 export interface AdvancedSortingContainerProps {
     name: string;
-    class: string;
-    style?: CSSProperties;
     tabIndex?: number;
+    id: string;
     headerContent: ReactNode;
     attributeName: string;
     displayStyle: DisplayStyleEnum;
@@ -41,9 +38,6 @@ export interface AdvancedSortingContainerProps {
 }
 
 export interface AdvancedSortingPreviewProps {
-    className: string;
-    style: string;
-    styleObject?: CSSProperties;
     readOnly: boolean;
     headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     attributeName: string;

@@ -13,9 +13,7 @@ interface headerProps {
 export function Header(props: headerProps): ReactElement {
     return (
         <Fragment>
-            <span className="mx-text">
-                {props.headerContent}
-            </span>
+            <span className="mx-text">{props.headerContent}</span>
             {props.isCurrentlySorted && (
                 <Fragment>
                     {props.sortAscending && (

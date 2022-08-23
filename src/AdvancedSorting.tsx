@@ -33,9 +33,9 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
                     <Dropdown
                         sortAttribute={props.sortAttribute.value as string}
                         dropdownValues={props.dropdownValues}
-                        selectOption={(sortAttribute: string, setSortAscending: boolean, sortAscending: boolean) => {
+                        selectOption={(sortAttribute: string, sortAscending: boolean) => {
                             props.sortAttribute.setValue(sortAttribute);
-                            if (setSortAscending && props.sortAscending.value as boolean !== sortAscending){
+                            if ((props.sortAscending.value as boolean) !== sortAscending) {
                                 props.sortAscending.setValue(sortAscending);
                             }
                             props.refreshAction?.execute();

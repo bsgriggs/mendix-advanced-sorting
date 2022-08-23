@@ -14,7 +14,7 @@ const MxIcon = (props: IconProps): ReactElement =>
             <Icon icon={props.mxIconOverride.value} altText={props.title} />
         </div>
     ) : (
-        <span className={"glyphicon glyphicon-" + props.defaultIconClass} aria-hidden="true"  title={props.title} />
+        <span className={"glyphicon glyphicon-" + props.defaultIconClass} aria-hidden="true" title={props.title} />
     );
 
 export default MxIcon;
