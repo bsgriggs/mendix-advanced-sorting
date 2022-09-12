@@ -12,6 +12,7 @@ Reusable widget to encapsulate the math required to manually do sorting. Most us
 - Ability to configure your own list of dropdown values
 
 ## Limitations  
+- N/A
 
 ## Usage  
 1. Create a non-persistent entity called **Pagination** with at least SortAscending (boolean) and SortAttribute (string). Ideally this should be in it's own module for easier importing and exporting to new projects!<br/>![pagination entity](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/pagination.png)
