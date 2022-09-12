@@ -1,4 +1,4 @@
-## AdvancedSorting
+## Advanced Sorting
 Reusable widget to encapsulate the math required to manually do sorting. Most useful when getting data from an API that allows sorting or writing SQL / OQL queries (e.g. https://cars.com/users?sort_by=year&order=desc). 
 
 Tip: Need pagination too? Check out Advanced Pagination. (<a href='https://github.com/bsgriggs/mendix-advanced-pagination' target="_blank">GitHub</a>) (<a href='https://marketplace.mendix.com/link/component/120670' target="_blank">Mendix Marketplace</a>)
