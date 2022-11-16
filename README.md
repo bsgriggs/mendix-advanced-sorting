@@ -38,7 +38,7 @@ The remaining steps depend on whether you want a dropdown or a clickable grid he
 <strong>Note:</strong> If you need to sort an attribute across an association, you must include the full database path. For example, if I need to sort the Name attribute on the Make entity (step2).<br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/association.png' />
 
 ## Demo project  
-https://widgettesting105-sandbox.mxapps.io/p/advanced-sorting
+https://widgettesting105-sandbox.mxapps.io/p/advanced-listview-controls
 
 ## Issues, suggestions and feature requests  
 https://github.com/bsgriggs/mendix-advanced-sorting/issues
