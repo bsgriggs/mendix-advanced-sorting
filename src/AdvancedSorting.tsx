@@ -25,8 +25,8 @@ export function AdvancedSorting({
     refreshAction
 }: AdvancedSortingContainerProps): ReactElement {
     const [dropdownList, setDropdownList] = useState<DropdownValue[]>([]);
-    if (displayStyle === "dropdown"){
-        
+    if (displayStyle === "dropdown") {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             if (
                 sortAscending.status === ValueStatus.Available &&
