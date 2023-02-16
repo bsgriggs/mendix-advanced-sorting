@@ -10,24 +10,30 @@ interface headerProps {
     descendingIcon?: DynamicValue<WebIcon>;
 }
 
-export function Header(props: headerProps): ReactElement {
+export function Header({
+    headerContent,
+    isCurrentlySorted,
+    sortAscending,
+    ascendingIcon,
+    descendingIcon
+}: headerProps): ReactElement {
     return (
         <Fragment>
-            <span className="mx-text">{props.headerContent}</span>
-            {props.isCurrentlySorted && (
+            <span className="mx-text">{headerContent}</span>
+            {isCurrentlySorted && (
                 <Fragment>
-                    {props.sortAscending && (
+                    {sortAscending && (
                         <MxIcon
                             defaultIconClass="sort-by-attributes"
                             title="Sorting Ascending"
-                            mxIconOverride={props.ascendingIcon}
+                            mxIconOverride={ascendingIcon}
                         />
                     )}
-                    {props.sortAscending === false && (
+                    {sortAscending === false && (
                         <MxIcon
                             defaultIconClass="sort-by-attributes-alt"
                             title="Sorting Descending"
-                            mxIconOverride={props.descendingIcon}
+                            mxIconOverride={descendingIcon}
                         />
                     )}
                 </Fragment>

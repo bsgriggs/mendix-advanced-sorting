@@ -6,17 +6,18 @@ interface DropdownProps {
     selectOption: (sortAttribute: string, sortAscending: boolean) => void;
 }
 
-export function Dropdown(props: DropdownProps): ReactElement {
+export function Dropdown({ dropdownValues, selectOption }: DropdownProps): ReactElement {
     const handleOnSelect = (dropdownValue: DropdownValue): void => {
         setCurrentValue(dropdownValue);
-        props.selectOption(dropdownValue.sortAttribute, dropdownValue.sortAscending);
+        selectOption(dropdownValue.sortAttribute, dropdownValue.sortAscending);
     };
-    const defaultOption =
-        props.dropdownValues.find(dropdownValue => dropdownValue.isDefault) || props.dropdownValues[0];
+    const defaultOption = dropdownValues.find(dropdownValue => dropdownValue.isDefault) || dropdownValues[0];
     useEffect(() => {
-        handleOnSelect(defaultOption);
+        if (defaultOption) {
+            handleOnSelect(defaultOption);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [defaultOption]);
-
     const [currentValue, setCurrentValue] = useState<DropdownValue>(defaultOption);
 
     return (
@@ -25,17 +26,17 @@ export function Dropdown(props: DropdownProps): ReactElement {
             aria-haspopup="listbox"
             onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 const dropdownValue =
-                    props.dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||
-                    props.dropdownValues[0];
+                    dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||
+                    dropdownValues[0];
                 handleOnSelect(dropdownValue);
             }}
             value={currentValue?.caption}
         >
-            {props.dropdownValues.map((dropdownValue, index) => (
+            {dropdownValues.map((dropdownValue, index) => (
                 <option
                     key={index}
                     value={dropdownValue.caption}
-                    aria-selected={dropdownValue.caption === currentValue.caption}
+                    aria-selected={dropdownValue.caption === currentValue?.caption}
                 >
                     {dropdownValue.caption}
                 </option>
