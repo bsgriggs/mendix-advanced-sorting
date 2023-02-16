@@ -44,10 +44,12 @@
                 <description></description>
                 <properties>
                     <propertyGroup caption="Dropdown Option Properties">
-                        <property key="optionCaption" type="expression">
+                        <property key="optionCaption" type="textTemplate">
                             <caption>Caption</caption>
                             <description>The text in the dropdown</description>
-                            <returnType type="String" />
+                            <translations>
+                                <translation lang="en_US"></translation>
+                            </translations>
                         </property>
                         <property key="dropdownDefaultOption" type="expression" defaultValue="false">
                             <caption>Default?</caption>
