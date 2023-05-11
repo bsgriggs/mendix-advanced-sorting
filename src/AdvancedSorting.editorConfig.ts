@@ -59,7 +59,8 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
                         "headerContent",
                         "attributeName",
                         "ascendingIcon",
-                        "descendingIcon"
+                        "descendingIcon",
+                        "headerAlignment"
                     ]);
                     hidePropertiesIn(defaultProperties, _values, [
                         "dynamicAttributeName",
@@ -75,7 +76,8 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
                         "headerContent",
                         "attributeName",
                         "ascendingIcon",
-                        "descendingIcon"
+                        "descendingIcon",
+                        "headerAlignment"
                     ]);
                     break;
             }

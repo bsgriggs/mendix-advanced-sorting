@@ -27,9 +27,19 @@
                     <enumerationValue key="dynamic">Dynamic</enumerationValue>
                 </enumerationValues>
             </property>
-            <property key="attributeName" type="string" required="true">
+            <property key="attributeName" type="expression" required="true">
                 <caption>Attribute Name</caption>
                 <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+                <returnType type="String" />
+            </property>
+            <property key="headerAlignment" type="enumeration" defaultValue="left">
+                <caption>Header Alignment</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="left">Left</enumerationValue>
+                    <enumerationValue key="middle">Middle</enumerationValue>
+                    <enumerationValue key="right">Right</enumerationValue>
+                </enumerationValues>
             </property>
             <property key="ascendingIcon" type="icon" required="false">
                 <caption>Ascending Icon</caption>

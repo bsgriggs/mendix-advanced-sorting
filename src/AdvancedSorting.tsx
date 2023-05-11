@@ -22,7 +22,8 @@ export function AdvancedSorting({
     sortAttribute,
     ascendingIcon,
     descendingIcon,
-    refreshAction
+    refreshAction,
+    headerAlignment
 }: AdvancedSortingContainerProps): ReactElement {
     const [dropdownList, setDropdownList] = useState<DropdownValue[]>([]);
     if (displayStyle === "dropdown") {
@@ -68,13 +69,16 @@ export function AdvancedSorting({
         <div
             id={name}
             className={displayStyle === "header" ? "advanced-sorting-header" : "advanced-sorting-dropdown"}
+            style={{
+                justifyContent: headerAlignment === "left" ? "start" : headerAlignment === "middle" ? "center" : "end"
+            }}
             onClick={
                 displayStyle === "header"
                     ? (): void => {
-                          if (attributeName === sortAttribute.value) {
+                          if (attributeName.value === sortAttribute.value) {
                               sortAscending.setValue(!sortAscending.value);
                           } else {
-                              sortAttribute.setValue(attributeName);
+                              sortAttribute.setValue(attributeName.value);
                           }
                           refreshAction?.execute();
                       }
@@ -84,7 +88,7 @@ export function AdvancedSorting({
             {displayStyle === "header" && (
                 <Header
                     headerContent={headerContent}
-                    isCurrentlySorted={attributeName === sortAttribute.value}
+                    isCurrentlySorted={attributeName.value === sortAttribute.value}
                     sortAscending={sortAscending.value as boolean}
                     ascendingIcon={ascendingIcon}
                     descendingIcon={descendingIcon}

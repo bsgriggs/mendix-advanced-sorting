@@ -10,6 +10,8 @@ export type DisplayStyleEnum = "header" | "dropdown";
 
 export type DropdownSourceEnum = "static" | "dynamic";
 
+export type HeaderAlignmentEnum = "left" | "middle" | "right";
+
 export type DropdownSortAscendingEnum = "true" | "false";
 
 export interface DropdownValuesType {
@@ -33,7 +35,8 @@ export interface AdvancedSortingContainerProps {
     headerContent: ReactNode;
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;
-    attributeName: string;
+    attributeName: DynamicValue<string>;
+    headerAlignment: HeaderAlignmentEnum;
     ascendingIcon?: DynamicValue<WebIcon>;
     descendingIcon?: DynamicValue<WebIcon>;
     dropdownValues: DropdownValuesType[];
@@ -53,8 +56,9 @@ export interface AdvancedSortingPreviewProps {
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;
     attributeName: string;
-    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    headerAlignment: HeaderAlignmentEnum;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     dropdownValues: DropdownValuesPreviewType[];
     dynamicDatasource: {} | { type: string } | null;
     dynamicCaption: string;

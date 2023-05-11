@@ -19,7 +19,7 @@ export function Header({
 }: headerProps): ReactElement {
     return (
         <Fragment>
-            <span className="mx-text">{headerContent}</span>
+            <span className={isCurrentlySorted ? "mx-text spacing-outer-right" : "mx-text"}>{headerContent}</span>
             {isCurrentlySorted && (
                 <Fragment>
                     {sortAscending && (
