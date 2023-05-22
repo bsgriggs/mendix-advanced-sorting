@@ -17,7 +17,7 @@ export type DropdownSortAscendingEnum = "true" | "false";
 export interface DropdownValuesType {
     optionCaption: DynamicValue<string>;
     dropdownDefaultOption: DynamicValue<boolean>;
-    dropdownAttributeName: string;
+    dropdownAttributeName: DynamicValue<string>;
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
@@ -57,8 +57,8 @@ export interface AdvancedSortingPreviewProps {
     dropdownSource: DropdownSourceEnum;
     attributeName: string;
     headerAlignment: HeaderAlignmentEnum;
-    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
     dropdownValues: DropdownValuesPreviewType[];
     dynamicDatasource: {} | { type: string } | null;
     dynamicCaption: string;

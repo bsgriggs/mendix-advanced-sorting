@@ -41,7 +41,7 @@ export function AdvancedSorting({
                             return {
                                 caption: dropdownValue.optionCaption.value as string,
                                 isDefault: dropdownValue.dropdownDefaultOption.value as boolean,
-                                sortAttribute: dropdownValue.dropdownAttributeName,
+                                sortAttribute: dropdownValue.dropdownAttributeName.value as string,
                                 sortAscending: dropdownValue.dropdownSortAscending === "true"
                             };
                         });

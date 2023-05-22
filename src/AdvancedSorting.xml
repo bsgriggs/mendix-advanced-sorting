@@ -66,9 +66,10 @@
                             <description>Should this option be selected automatically when the page loads?</description>
                             <returnType type="Boolean" />
                         </property>
-                        <property key="dropdownAttributeName" type="string" required="true">
+                        <property key="dropdownAttributeName" type="expression" required="true">
                             <caption>Attribute Name</caption>
                             <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
+                            <returnType type="String" />
                         </property>
                         <property key="dropdownSortAscending" type="enumeration" defaultValue="true">
                             <caption>Sort Ascending</caption>
