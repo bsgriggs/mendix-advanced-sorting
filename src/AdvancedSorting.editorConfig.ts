@@ -1,16 +1,15 @@
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
-import { hidePropertiesIn } from "./utils/PageEditorUtils";
-// import { StructurePreviewProps, RowLayoutProps, ContainerProps, TextProps, DropZoneProps } from "./utils/PageEditor";
+import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
 
-export type Properties = PropertyGroup[];
+type Properties = PropertyGroup[];
 
-export type PropertyGroup = {
+type PropertyGroup = {
     caption: string;
     propertyGroups?: PropertyGroup[];
     properties?: Property[];
 };
 
-export type Property = {
+type Property = {
     key: string;
     caption: string;
     description?: string;
@@ -35,12 +34,6 @@ type ObjectProperties = {
 
 export function getProperties(_values: AdvancedSortingPreviewProps, defaultProperties: Properties): Properties {
     // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
-    /* Example
-    if (values.myProperty === "custom") {
-        delete defaultProperties.properties.myOtherProperty;
-    }
-    */
-
     switch (_values.displayStyle) {
         case "header":
             hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource"]);

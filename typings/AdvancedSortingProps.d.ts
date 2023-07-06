@@ -57,8 +57,8 @@ export interface AdvancedSortingPreviewProps {
     dropdownSource: DropdownSourceEnum;
     attributeName: string;
     headerAlignment: HeaderAlignmentEnum;
-    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     dropdownValues: DropdownValuesPreviewType[];
     dynamicDatasource: {} | { type: string } | null;
     dynamicCaption: string;

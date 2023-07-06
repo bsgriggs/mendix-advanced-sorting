@@ -23,7 +23,8 @@ export function AdvancedSorting({
     ascendingIcon,
     descendingIcon,
     refreshAction,
-    headerAlignment
+    headerAlignment,
+    tabIndex
 }: AdvancedSortingContainerProps): ReactElement {
     const [dropdownList, setDropdownList] = useState<DropdownValue[]>([]);
     if (displayStyle === "dropdown") {
@@ -62,28 +63,34 @@ export function AdvancedSorting({
                 setDropdownList(newDropdownValues);
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [dropdownValues, dynamicDatasource]);
+        }, [dropdownValues, dynamicDatasource, sortAscending.status, sortAttribute.status]);
     }
+
+    const onClickHandler = (): void => {
+        if (displayStyle === "header") {
+            if (attributeName.value === sortAttribute.value) {
+                sortAscending.setValue(!sortAscending.value);
+            } else {
+                sortAttribute.setValue(attributeName.value);
+            }
+            refreshAction?.execute();
+        }
+    };
 
     return (
         <div
             id={name}
-            className={displayStyle === "header" ? "advanced-sorting-header" : "advanced-sorting-dropdown"}
+            className={`advanced-sorting-${displayStyle === "header" ? "header" : "dropdown"}`}
             style={{
                 justifyContent: headerAlignment === "left" ? "start" : headerAlignment === "middle" ? "center" : "end"
             }}
-            onClick={
-                displayStyle === "header"
-                    ? (): void => {
-                          if (attributeName.value === sortAttribute.value) {
-                              sortAscending.setValue(!sortAscending.value);
-                          } else {
-                              sortAttribute.setValue(attributeName.value);
-                          }
-                          refreshAction?.execute();
-                      }
-                    : undefined
-            }
+            tabIndex={displayStyle === "header" ? tabIndex || 0 : undefined}
+            onClick={onClickHandler}
+            onKeyDown={event => {
+                if (event.key === "Enter") {
+                    onClickHandler();
+                }
+            }}
         >
             {displayStyle === "header" && (
                 <Header
@@ -106,6 +113,8 @@ export function AdvancedSorting({
                         }
                         refreshAction?.execute();
                     }}
+                    tabIndex={tabIndex}
+                    name={name}
                 />
             )}
         </div>

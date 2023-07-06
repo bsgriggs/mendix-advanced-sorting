@@ -2,11 +2,13 @@ import { ReactElement, createElement, ChangeEvent, useState, useEffect } from "r
 import { DropdownValue } from "typings";
 
 interface DropdownProps {
+    name: string;
+    tabIndex?: number;
     dropdownValues: DropdownValue[];
     selectOption: (sortAttribute: string, sortAscending: boolean) => void;
 }
 
-export function Dropdown({ dropdownValues, selectOption }: DropdownProps): ReactElement {
+export function Dropdown({ dropdownValues, selectOption, name, tabIndex }: DropdownProps): ReactElement {
     const handleOnSelect = (dropdownValue: DropdownValue): void => {
         setCurrentValue(dropdownValue);
         selectOption(dropdownValue.sortAttribute, dropdownValue.sortAscending);
@@ -22,6 +24,7 @@ export function Dropdown({ dropdownValues, selectOption }: DropdownProps): React
 
     return (
         <select
+            tabIndex={tabIndex}
             className="form-control"
             aria-haspopup="listbox"
             onChange={(event: ChangeEvent<HTMLSelectElement>) => {
@@ -34,6 +37,7 @@ export function Dropdown({ dropdownValues, selectOption }: DropdownProps): React
         >
             {dropdownValues.map((dropdownValue, index) => (
                 <option
+                    id={name + "_" + index}
                     key={index}
                     value={dropdownValue.caption}
                     aria-selected={dropdownValue.caption === currentValue?.caption}
