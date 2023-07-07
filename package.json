@@ -6,7 +6,7 @@
   "copyright": "© Mendix Technology BV 2022. All rights reserved.",
   "author": "Benjamin Griggs",
   "engines": {
-    "node": ">=16"
+    "node": ">=14"
   },
   "license": "MIT",
   "config": {
@@ -25,9 +25,10 @@
     "release": "pluggable-widgets-tools release:web"
   },
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "~9.18.0",
+    "@mendix/pluggable-widgets-tools": "~9.6.2",
     "@types/big.js": "^6.0.2",
     "@types/react": "~17.0.1",
     "@types/react-dom": "~17.0.1"
-  }
+  },
+  "dependencies": {}
 }

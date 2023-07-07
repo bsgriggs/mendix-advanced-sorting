@@ -1,15 +1,15 @@
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
-import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
+import { hidePropertiesIn } from "./utils/PageEditorUtils";
 
-type Properties = PropertyGroup[];
+export type Properties = PropertyGroup[];
 
-type PropertyGroup = {
+export type PropertyGroup = {
     caption: string;
     propertyGroups?: PropertyGroup[];
     properties?: Property[];
 };
 
-type Property = {
+export type Property = {
     key: string;
     caption: string;
     description?: string;
