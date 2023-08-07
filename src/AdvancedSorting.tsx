@@ -24,7 +24,8 @@ export function AdvancedSorting({
     descendingIcon,
     refreshAction,
     headerAlignment,
-    tabIndex
+    tabIndex,
+    ariaLabel
 }: AdvancedSortingContainerProps): ReactElement {
     const [dropdownList, setDropdownList] = useState<DropdownValue[]>([]);
     if (displayStyle === "dropdown") {
@@ -115,6 +116,7 @@ export function AdvancedSorting({
                     }}
                     tabIndex={tabIndex}
                     name={name}
+                    ariaLabel={ariaLabel?.value}
                 />
             )}
         </div>

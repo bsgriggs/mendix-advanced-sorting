@@ -34,6 +34,7 @@ export interface AdvancedSortingContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     id: string;
+    ariaLabel?: DynamicValue<string>;
     headerContent: ReactNode;
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;
@@ -55,6 +56,7 @@ export interface AdvancedSortingContainerProps {
 export interface AdvancedSortingPreviewProps {
     class: string;
     style: string;
+    ariaLabel: string;
     headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     displayStyle: DisplayStyleEnum;
     dropdownSource: DropdownSourceEnum;

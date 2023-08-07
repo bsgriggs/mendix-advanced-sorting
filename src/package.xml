@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="AdvancedSorting" version="1.3.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="AdvancedSorting" version="1.3.1"
+        xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="AdvancedSorting.xml"/>
+            <widgetFile path="AdvancedSorting.xml" />
         </widgetFiles>
         <files>
-            <file path="mendix/advancedsorting"/>
+            <file path="mendix/advancedsorting" />
         </files>
     </clientModule>
 </package>

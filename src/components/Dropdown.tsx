@@ -3,12 +3,13 @@ import { DropdownValue } from "typings";
 
 interface DropdownProps {
     name: string;
+    ariaLabel?: string;
     tabIndex?: number;
     dropdownValues: DropdownValue[];
     selectOption: (sortAttribute: string, sortAscending: boolean) => void;
 }
 
-export function Dropdown({ dropdownValues, selectOption, name, tabIndex }: DropdownProps): ReactElement {
+export function Dropdown({ dropdownValues, selectOption, name, tabIndex, ariaLabel }: DropdownProps): ReactElement {
     const handleOnSelect = (dropdownValue: DropdownValue): void => {
         setCurrentValue(dropdownValue);
         selectOption(dropdownValue.sortAttribute, dropdownValue.sortAscending);
@@ -27,6 +28,7 @@ export function Dropdown({ dropdownValues, selectOption, name, tabIndex }: Dropd
             tabIndex={tabIndex}
             className="form-control"
             aria-haspopup="listbox"
+            aria-label={ariaLabel}
             onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 const dropdownValue =
                     dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||

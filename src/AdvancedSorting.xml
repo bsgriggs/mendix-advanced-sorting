@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="mendix.advancedsorting.AdvancedSorting" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="mendix.advancedsorting.AdvancedSorting" pluginWidget="true" needsEntityContext="true"
+    offlineCapable="true" supportedPlatform="Web" xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Advanced Sorting</name>
     <description>Reusable widget to encapsulate the logic needed to manually do sorting</description>
     <icon />
     <properties>
         <propertyGroup caption="General">
             <systemProperty key="Label"></systemProperty>
+            <property key="ariaLabel" type="textTemplate" required="false">
+                <caption>Aria label</caption>
+                <description>Text a screen reader will say when the element has focus</description>
+                <translations>
+                    <translation lang="en_US">Select</translation>
+                </translations>
+            </property>
             <systemProperty key="Visibility"></systemProperty>
             <property key="headerContent" type="widgets" required="true">
                 <caption>Header Content</caption>
@@ -86,30 +96,34 @@
         <propertyGroup caption="Dynamic Dropdown">
             <property key="dynamicDatasource" type="datasource" isList="true" required="true">
                 <caption>Dynamic Data Source</caption>
-                 <description>Should be a Microflow or Nanoflow that returns a list of objects with the following attributes</description>
+                <description>Should be a Microflow or Nanoflow that returns a list of objects with the following attributes</description>
             </property>
-            <property key="dynamicCaption" type="attribute" dataSource="dynamicDatasource" required="true">
+            <property key="dynamicCaption" type="attribute" dataSource="dynamicDatasource"
+                required="true">
                 <caption>Caption</caption>
                 <description>The text displayed to the user in the dropdown</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
-            <property key="dynamicDefaultOption" type="attribute" dataSource="dynamicDatasource" required="true">
+            <property key="dynamicDefaultOption" type="attribute" dataSource="dynamicDatasource"
+                required="true">
                 <caption>Default?</caption>
                 <description>Should this option be selected automatically when the page loads?</description>
                 <attributeTypes>
                     <attributeType name="Boolean" />
                 </attributeTypes>
             </property>
-            <property key="dynamicAttributeName" type="attribute" dataSource="dynamicDatasource" required="true">
+            <property key="dynamicAttributeName" type="attribute" dataSource="dynamicDatasource"
+                required="true">
                 <caption>Attribute Name</caption>
                 <description>The name of the attribute to be sorted, should match the database's attribute name exactly</description>
                 <attributeTypes>
                     <attributeType name="String" />
                 </attributeTypes>
             </property>
-            <property key="dynamicSortAscending" type="attribute" dataSource="dynamicDatasource"  required="true">
+            <property key="dynamicSortAscending" type="attribute" dataSource="dynamicDatasource"
+                required="true">
                 <caption>Sort Ascending</caption>
                 <description>The value to set the Sort Ascending attribute when this option is selected</description>
                 <attributeTypes>
