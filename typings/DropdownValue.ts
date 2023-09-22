@@ -1,4 +1,4 @@
-export interface DropdownValue {
+export default interface DropdownValue {
     caption: string;
     isDefault: boolean;
     sortAttribute: string;

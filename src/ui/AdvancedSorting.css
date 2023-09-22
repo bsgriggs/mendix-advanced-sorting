@@ -1,9 +1,0 @@
-.advanced-sorting-header {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.advanced-sorting-dropdown:focus-visible, .advanced-sorting-header:focus-visible{
-    outline: -webkit-focus-ring-color auto 1px;
-}

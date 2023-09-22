@@ -1,124 +1,74 @@
-import { ReactElement, createElement, useState, useEffect } from "react";
-import { ValueStatus } from "mendix";
+import { ReactElement, createElement, useCallback, useMemo } from "react";
 import { AdvancedSortingContainerProps } from "../typings/AdvancedSortingProps";
-import "./ui/AdvancedSorting.css";
-import { DropdownValue } from "typings";
-import { Header } from "./components/Header";
-import { Dropdown } from "./components/Dropdown";
+import "./ui/AdvancedSorting.scss";
+import DropdownValue from "typings/DropdownValue";
+import Sorting from "./components/Sorting";
 
-export function AdvancedSorting({
-    attributeName,
-    displayStyle,
-    dropdownSource,
-    dropdownValues,
-    dynamicAttributeName,
-    dynamicCaption,
-    dynamicDatasource,
-    dynamicDefaultOption,
-    dynamicSortAscending,
-    headerContent,
-    name,
-    sortAscending,
-    sortAttribute,
-    ascendingIcon,
-    descendingIcon,
-    refreshAction,
-    headerAlignment,
-    tabIndex,
-    ariaLabel
-}: AdvancedSortingContainerProps): ReactElement {
-    const [dropdownList, setDropdownList] = useState<DropdownValue[]>([]);
-    if (displayStyle === "dropdown") {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useEffect(() => {
-            if (
-                sortAscending.status === ValueStatus.Available &&
-                sortAttribute.status === ValueStatus.Available &&
-                (dropdownSource !== "dynamic" || dynamicDatasource.status === ValueStatus.Available)
-            ) {
-                let newDropdownValues: DropdownValue[] = [];
-                switch (dropdownSource) {
-                    case "static":
-                        newDropdownValues = dropdownValues.map(dropdownValue => {
-                            return {
-                                caption: dropdownValue.optionCaption.value as string,
-                                isDefault: dropdownValue.dropdownDefaultOption.value as boolean,
-                                sortAttribute: dropdownValue.dropdownAttributeName.value as string,
-                                sortAscending: dropdownValue.dropdownSortAscending === "true"
-                            };
-                        });
-                        break;
-                    case "dynamic":
-                        if (dynamicDatasource.items !== undefined) {
-                            newDropdownValues = dynamicDatasource.items.map(dynamicValue => {
-                                return {
-                                    caption: dynamicCaption.get(dynamicValue).value as string,
-                                    isDefault: dynamicDefaultOption.get(dynamicValue).value as boolean,
-                                    sortAttribute: dynamicAttributeName.get(dynamicValue).value as string,
-                                    sortAscending: dynamicSortAscending.get(dynamicValue).value as boolean
-                                };
-                            });
-                        }
-                        break;
-                }
-                setDropdownList(newDropdownValues);
-            }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [dropdownValues, dynamicDatasource, sortAscending.status, sortAttribute.status]);
-    }
-
-    const onClickHandler = (): void => {
-        if (displayStyle === "header") {
-            if (attributeName.value === sortAttribute.value) {
-                sortAscending.setValue(!sortAscending.value);
+export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElement {
+    const dropdownList: DropdownValue[] = useMemo(() => {
+        let newDropdownValues: DropdownValue[] = [];
+        if (props.displayStyle === "dropdown") {
+            if (props.dropdownSource === "static") {
+                newDropdownValues = props.dropdownValues.map(dropdownValue => ({
+                    caption: dropdownValue.optionCaption.value as string,
+                    isDefault: dropdownValue.dropdownDefaultOption.value as boolean,
+                    sortAttribute: dropdownValue.dropdownAttributeName.value as string,
+                    sortAscending: dropdownValue.dropdownSortAscending === "true"
+                }));
             } else {
-                sortAttribute.setValue(attributeName.value);
+                if (props.dynamicDatasource.items !== undefined) {
+                    newDropdownValues = props.dynamicDatasource.items.map(dynamicValue => {
+                        return {
+                            caption: props.dynamicCaption.get(dynamicValue).value as string,
+                            isDefault: props.dynamicDefaultOption.get(dynamicValue).value as boolean,
+                            sortAttribute: props.dynamicAttributeName.get(dynamicValue).value as string,
+                            sortAscending: props.dynamicSortAscending.get(dynamicValue).value as boolean
+                        };
+                    });
+                }
             }
-            refreshAction?.execute();
         }
-    };
+        return newDropdownValues;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.dropdownValues, props.dynamicDatasource, props.sortAscending.status, props.sortAttribute.status]);
+
+    const onClickHeader = useCallback((): void => {
+        if (props.displayStyle === "header") {
+            if (props.attributeName.value === props.sortAttribute.value) {
+                props.sortAscending.setValue(!props.sortAscending.value);
+            } else {
+                props.sortAttribute.setValue(props.attributeName.value);
+            }
+            props.refreshAction?.execute();
+        }
+    }, [props.sortAscending, props.sortAttribute, props.refreshAction, props.attributeName]);
+
+    const onSelectDropdown = useCallback(
+        (newSortAttribute: string, newSortAscending: boolean): void => {
+            if (props.sortAttribute.value !== newSortAttribute) {
+                props.sortAttribute.setValue(newSortAttribute);
+            }
+            if ((props.sortAscending.value as boolean) !== newSortAscending) {
+                props.sortAscending.setValue(newSortAscending);
+            }
+            props.refreshAction?.execute();
+        },
+        [props.sortAscending, props.sortAttribute, props.refreshAction]
+    );
 
     return (
-        <div
-            id={name}
-            className={`advanced-sorting-${displayStyle === "header" ? "header" : "dropdown"}`}
-            style={{
-                justifyContent: headerAlignment === "left" ? "start" : headerAlignment === "middle" ? "center" : "end"
-            }}
-            tabIndex={displayStyle === "header" ? tabIndex || 0 : undefined}
-            onClick={onClickHandler}
-            onKeyDown={event => {
-                if (event.key === "Enter") {
-                    onClickHandler();
-                }
-            }}
-        >
-            {displayStyle === "header" && (
-                <Header
-                    headerContent={headerContent}
-                    isCurrentlySorted={attributeName.value === sortAttribute.value}
-                    sortAscending={sortAscending.value as boolean}
-                    ascendingIcon={ascendingIcon}
-                    descendingIcon={descendingIcon}
-                />
-            )}
-            {displayStyle === "dropdown" && (
-                <Dropdown
-                    dropdownValues={dropdownList}
-                    selectOption={(newSortAttribute: string, newSortAscending: boolean): void => {
-                        if (sortAttribute.value !== newSortAttribute) {
-                            sortAttribute.setValue(newSortAttribute);
-                        }
-                        if ((sortAscending.value as boolean) !== newSortAscending) {
-                            sortAscending.setValue(newSortAscending);
-                        }
-                        refreshAction?.execute();
-                    }}
-                    tabIndex={tabIndex}
-                    name={name}
-                    ariaLabel={ariaLabel?.value}
-                />
-            )}
-        </div>
+        <Sorting
+            {...props}
+            tabIndex={props.tabIndex || 0}
+            dropdownValues={dropdownList}
+            attributeName={props.attributeName?.value as string}
+            onClickHeader={onClickHeader}
+            onSelectDropdown={onSelectDropdown}
+            ariaLabel={props.ariaLabel?.value as string}
+            ascendingIcon={props.ascendingIcon?.value || { type: "glyph", iconClass: "glyphicon-arrow-up" }}
+            descendingIcon={props.descendingIcon?.value || { type: "glyph", iconClass: "glyphicon-arrow-down" }}
+            sortAttribute={props.sortAttribute.value as string}
+            sortAscending={props.sortAscending.value as boolean}
+        />
     );
 }

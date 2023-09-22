@@ -3,14 +3,12 @@
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
-import { ComponentType, CSSProperties, ReactNode } from "react";
+import { ComponentType, ReactNode } from "react";
 import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue, WebIcon } from "mendix";
 
 export type DisplayStyleEnum = "header" | "dropdown";
 
 export type DropdownSourceEnum = "static" | "dynamic";
-
-export type HeaderAlignmentEnum = "left" | "middle" | "right";
 
 export type DropdownSortAscendingEnum = "true" | "false";
 
@@ -21,6 +19,8 @@ export interface DropdownValuesType {
     dropdownSortAscending: DropdownSortAscendingEnum;
 }
 
+export type HeaderAlignmentEnum = "left" | "middle" | "right";
+
 export interface DropdownValuesPreviewType {
     optionCaption: string;
     dropdownDefaultOption: string;
@@ -30,47 +30,44 @@ export interface DropdownValuesPreviewType {
 
 export interface AdvancedSortingContainerProps {
     name: string;
-    class: string;
-    style?: CSSProperties;
     tabIndex?: number;
     id: string;
-    ariaLabel?: DynamicValue<string>;
-    headerContent: ReactNode;
+    sortAttribute: EditableValue<string>;
+    sortAscending: EditableValue<boolean>;
+    refreshAction?: ActionValue;
     displayStyle: DisplayStyleEnum;
-    dropdownSource: DropdownSourceEnum;
     attributeName: DynamicValue<string>;
-    headerAlignment: HeaderAlignmentEnum;
-    ascendingIcon?: DynamicValue<WebIcon>;
-    descendingIcon?: DynamicValue<WebIcon>;
+    headerContent: ReactNode;
+    dropdownSource: DropdownSourceEnum;
     dropdownValues: DropdownValuesType[];
     dynamicDatasource: ListValue;
     dynamicCaption: ListAttributeValue<string>;
     dynamicDefaultOption: ListAttributeValue<boolean>;
     dynamicAttributeName: ListAttributeValue<string>;
     dynamicSortAscending: ListAttributeValue<boolean>;
-    refreshAction?: ActionValue;
-    sortAttribute: EditableValue<string>;
-    sortAscending: EditableValue<boolean>;
+    headerAlignment: HeaderAlignmentEnum;
+    ariaLabel?: DynamicValue<string>;
+    ascendingIcon?: DynamicValue<WebIcon>;
+    descendingIcon?: DynamicValue<WebIcon>;
 }
 
 export interface AdvancedSortingPreviewProps {
-    class: string;
-    style: string;
-    ariaLabel: string;
-    headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    readOnly: boolean;
+    sortAttribute: string;
+    sortAscending: string;
+    refreshAction: {} | null;
     displayStyle: DisplayStyleEnum;
-    dropdownSource: DropdownSourceEnum;
     attributeName: string;
-    headerAlignment: HeaderAlignmentEnum;
-    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    dropdownSource: DropdownSourceEnum;
     dropdownValues: DropdownValuesPreviewType[];
     dynamicDatasource: {} | { type: string } | null;
     dynamicCaption: string;
     dynamicDefaultOption: string;
     dynamicAttributeName: string;
     dynamicSortAscending: string;
-    refreshAction: {} | null;
-    sortAttribute: string;
-    sortAscending: string;
+    headerAlignment: HeaderAlignmentEnum;
+    ariaLabel: string;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
 }

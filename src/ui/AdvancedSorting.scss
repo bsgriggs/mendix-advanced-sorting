@@ -1,0 +1,25 @@
+$outline: -webkit-focus-ring-color auto 1px;
+.advanced-sorting {
+    &.display-header {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:focus-visible {
+            outline: $outline;
+        }
+    }
+    &.display-dropdown {
+        &:focus-visible {
+            outline: $outline;
+        }
+    }
+    &.left {
+        justify-content: flex-start;
+    }
+    &.middle {
+        justify-content: center;
+    }
+    &.right {
+        justify-content: flex-end;
+    }
+}
