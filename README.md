@@ -45,15 +45,17 @@ Inside the domain model of the entity you need to retrieve, create a non-persist
 - Set **Search{Entity}** to generalize Pagination  
 - Add an association to **System.Session**.  
 - Add attributes and associations for any search criteria you want. For me, FuzzySearch is for the text input and the associations are for multi-select popups I want to display.  
-![searchEmployees](https://github.com/bsgriggs/pagination/blob/media_v2/searchEmployees.png)
+![searchEmployees](https://github.com/bsgriggs/pagination/blob/media_v2/searchEmployees.png)  
+
+Create a Microflow called **DS_Search{Entity}** that retrieves the list from **$currentSession** for an existing **Search{Entity}** object. If the list is not empty, head the list and return the object. Otherwise, create a new object with the association to System.Session as $currentSession and PageSize as whatever default page size you want.  
+![DS_SearchEmployees](https://github.com/bsgriggs/pagination/blob/media_v2/DS_SearchEmployees.png)  
 
 ### Page and Widget Setup - Header
-1. Create a Microflow called **DS_Search{Entity}** that retrieves the list from **$currentSession** for an existing **Search{Entity}** object. If the list is not empty, head the list and return the object. Otherwise, create a new object with the association to System.Session as $currentSession and PageSize as whatever default page size you want.  
-![DS_SearchEmployees](https://github.com/bsgriggs/pagination/blob/media_v2/DS_SearchEmployees.png)  
-2. Setup your page similar to how you see below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
+
+1. Setup your page similar to how you see below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
 ![page_mendix](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix.png)  
-3. In the Advanced Sorting widgets, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**, the Sort Attribute, and the Sort Ascending.  
-4. Set the Attribute Name as the exact database name of the attribute you want to sort. This is case-sensitive. If you want to sort across an association, use the format: {ModuleName}.{AssociationName}/{ModuleName}.{EntityName}/{AttributeName}.  
+2. In the Advanced Sorting widgets, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**, the Sort Attribute, and the Sort Ascending.  
+3. Set the Attribute Name as the exact database name of the attribute you want to sort. This is case-sensitive. If you want to sort across an association, use the format: {ModuleName}.{AssociationName}/{ModuleName}.{EntityName}/{AttributeName}.  
 For example, consider the following domain model from the 'TestObjects' module.  
 ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/domainEmployee.png)
 
@@ -61,12 +63,26 @@ For example, consider the following domain model from the 'TestObjects' module.
 | --- | --- |
 | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalHeader.png) | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalAssociation.png) |  
 
-5. Now when the user clicks on the headers, the **Search{Entity}**'s SortAttribute and SortAscending will be set. You can use these values in your API, SQL, or Xpath. In my use case, I'm using the [Xpath module](https://marketplace.mendix.com/link/component/120424). So, I set the SortMap object bassed on the values from the **Search{Entity}** object.  
+4. Now when the user clicks on the headers, the **Search{Entity}**'s SortAttribute and SortAscending will be set. You can use these values in your API, SQL, or Xpath. In my use case, I'm using the [Xpath module](https://marketplace.mendix.com/link/component/120424). So, I set the SortMap object based on the values from the **Search{Entity}** object.  
 ![microflow](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/microflow.png)
 
 ### Page and Widget Setup - Static Dropdown
-![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Static.png)  
-{ToDo}
+![dropdown static](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Static.png)  
+Dropdown mode adds 3 more settings:  
+**Dropdown sort type** - Controls how to set the SortAscending Attribute. 
+- For Data mode, each Dropdown Values item has a direction that must be specified. See Dropdown Values for details.
+- For Toggle mode, a button will appear next to the dropdown that shows the direction and can be clicked to flip the direction. See dropdown on the right in the image below. The side the button appears on can be customized in the Customization tab -> Dropdown -> Toggle alignment.  
+![demo](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demo.png)  
+
+**Dropdown source** - Determines how the dropdown data is filled. For these setup instructions, it should be Static. For [Dynamic](https://github.com/bsgriggs/mendix-advanced-sorting/edit/master/README.md#page-and-widget-setup---dynamic-dropdown) see the next section.
+
+**Dropdown values** - The list of options in the dropdown. Each has the following 4 settings.  
+![item](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/dropdownItem.png)  
+**Caption** - The text shown in the dropdown.
+**Default?** - Determines if this value is selected when the widget loads. There should only be 1 item with default set to true. If no items have a default, the widget will set the first item on load.
+**Attribute Name** - The name of the
+**Sort Ascending** - 
+
 ### Page and Widget Setup - Dynamic Dropdown
 ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Dynamic.png)  
 {ToDo}
