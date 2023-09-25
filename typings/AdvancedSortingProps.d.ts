@@ -8,6 +8,8 @@ import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue
 
 export type DisplayStyleEnum = "header" | "dropdown";
 
+export type DropdownSortTypeEnum = "DATA" | "TOGGLE";
+
 export type DropdownSourceEnum = "static" | "dynamic";
 
 export type DropdownSortAscendingEnum = "true" | "false";
@@ -36,6 +38,7 @@ export interface AdvancedSortingContainerProps {
     sortAscending: EditableValue<boolean>;
     refreshAction?: ActionValue;
     displayStyle: DisplayStyleEnum;
+    dropdownSortType: DropdownSortTypeEnum;
     attributeName: DynamicValue<string>;
     headerContent: ReactNode;
     dropdownSource: DropdownSourceEnum;
@@ -57,6 +60,7 @@ export interface AdvancedSortingPreviewProps {
     sortAscending: string;
     refreshAction: {} | null;
     displayStyle: DisplayStyleEnum;
+    dropdownSortType: DropdownSortTypeEnum;
     attributeName: string;
     headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     dropdownSource: DropdownSourceEnum;
@@ -68,6 +72,6 @@ export interface AdvancedSortingPreviewProps {
     dynamicSortAscending: string;
     headerAlignment: HeaderAlignmentEnum;
     ariaLabel: string;
-    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
 }

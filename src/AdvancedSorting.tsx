@@ -22,7 +22,10 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
                             caption: props.dynamicCaption.get(dynamicValue).value as string,
                             isDefault: props.dynamicDefaultOption.get(dynamicValue).value as boolean,
                             sortAttribute: props.dynamicAttributeName.get(dynamicValue).value as string,
-                            sortAscending: props.dynamicSortAscending.get(dynamicValue).value as boolean
+                            sortAscending:
+                                props.dropdownSortType === "DATA"
+                                    ? (props.dynamicSortAscending.get(dynamicValue).value as boolean)
+                                    : true
                         };
                     });
                 }
@@ -41,6 +44,7 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
             }
             props.refreshAction?.execute();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.sortAscending, props.sortAttribute, props.refreshAction, props.attributeName]);
 
     const onSelectDropdown = useCallback(

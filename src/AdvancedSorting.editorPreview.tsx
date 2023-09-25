@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable */
 import { ReactNode, createElement } from "react";
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
 import Sorting from "./components/Sorting";

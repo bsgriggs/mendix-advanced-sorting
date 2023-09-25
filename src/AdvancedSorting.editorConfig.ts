@@ -1,5 +1,5 @@
 import { AdvancedSortingPreviewProps } from "../typings/AdvancedSortingProps";
-import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
+import { hideNestedPropertiesIn, hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
 
 export type Properties = PropertyGroup[];
 
@@ -36,7 +36,7 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
     // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
     switch (_values.displayStyle) {
         case "header":
-            hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource"]);
+            hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource", "dropdownSortType"]);
             hidePropertiesIn(defaultProperties, _values, [
                 "dynamicAttributeName",
                 "dynamicCaption",
@@ -48,13 +48,7 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
         case "dropdown":
             switch (_values.dropdownSource) {
                 case "static":
-                    hidePropertiesIn(defaultProperties, _values, [
-                        "headerContent",
-                        "attributeName",
-                        "ascendingIcon",
-                        "descendingIcon",
-                        "headerAlignment"
-                    ]);
+                    hidePropertiesIn(defaultProperties, _values, ["headerContent", "attributeName", "headerAlignment"]);
                     hidePropertiesIn(defaultProperties, _values, [
                         "dynamicAttributeName",
                         "dynamicCaption",
@@ -65,17 +59,22 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
                     break;
                 case "dynamic":
                     hidePropertiesIn(defaultProperties, _values, ["dropdownValues"]);
-                    hidePropertiesIn(defaultProperties, _values, [
-                        "headerContent",
-                        "attributeName",
-                        "ascendingIcon",
-                        "descendingIcon",
-                        "headerAlignment"
-                    ]);
+                    hidePropertiesIn(defaultProperties, _values, ["headerContent", "attributeName", "headerAlignment"]);
                     break;
             }
 
             break;
+    }
+
+    if (_values.dropdownSortType === "TOGGLE") {
+        hidePropertiesIn(defaultProperties, _values, ["dynamicSortAscending"]);
+        for (let i = 0; i < _values.dropdownValues.length; i++) {
+            hideNestedPropertiesIn(defaultProperties, _values, "dropdownValues", i, ["dropdownSortAscending"]);
+        }
+    }
+
+    if (_values.displayStyle === "dropdown" && _values.dropdownSortType === "DATA") {
+        hidePropertiesIn(defaultProperties, _values, ["ascendingIcon", "descendingIcon"]);
     }
 
     return defaultProperties;

@@ -1,7 +1,7 @@
 $outline: -webkit-focus-ring-color auto 1px;
 .advanced-sorting {
+    display: flex;
     &.display-header {
-        display: flex;
         align-items: center;
         cursor: pointer;
         &:focus-visible {
@@ -9,6 +9,17 @@ $outline: -webkit-focus-ring-color auto 1px;
         }
     }
     &.display-dropdown {
+        &.toggle {
+            button {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-right: none;
+            }
+            select {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
         &:focus-visible {
             outline: $outline;
         }

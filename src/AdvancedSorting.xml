@@ -39,6 +39,14 @@
                         <enumerationValue key="dropdown">Dropdown</enumerationValue>
                     </enumerationValues>
                 </property>
+                <property key="dropdownSortType" type="enumeration" defaultValue="DATA">
+                    <caption>Dropdown sort type</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="DATA">Data</enumerationValue>
+                        <enumerationValue key="TOGGLE">Toggle</enumerationValue>
+                    </enumerationValues>
+                </property>
                 <property key="attributeName" type="expression" required="true">
                     <caption>Attribute Name</caption>
                     <description>The database's name for the attribute or path for associations</description>
@@ -131,7 +139,7 @@
         <propertyGroup caption="Customization">
             <propertyGroup caption="Style">
                 <property key="headerAlignment" type="enumeration" defaultValue="left">
-                    <caption>Header Alignment</caption>
+                    <caption>Alignment</caption>
                     <description></description>
                     <enumerationValues>
                         <enumerationValue key="left">Left</enumerationValue>

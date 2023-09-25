@@ -1,6 +1,6 @@
 import { ReactElement, createElement, ReactNode } from "react";
-import { DisplayStyleEnum, HeaderAlignmentEnum } from "../../typings/AdvancedSortingProps";
-import DropdownValue from "typings/DropdownValue";
+import { DisplayStyleEnum, DropdownSortTypeEnum, HeaderAlignmentEnum } from "../../typings/AdvancedSortingProps";
+import DropdownValue from "../../typings/DropdownValue";
 import Header from "./sub-components/Header";
 import Dropdown from "./sub-components/Dropdown";
 import { WebIcon } from "mendix";
@@ -23,11 +23,19 @@ interface SortingProps {
     dropdownValues: DropdownValue[];
     ascendingIcon: WebIcon;
     descendingIcon: WebIcon;
+    dropdownSortType: DropdownSortTypeEnum;
 }
 
 const Sorting = (props: SortingProps): ReactElement => (
     <div
-        className={classNames("advanced-sorting", `display-${props.displayStyle}`, `${props.headerAlignment}`)}
+        className={classNames(
+            "advanced-sorting",
+            `display-${props.displayStyle}`,
+            { [props.headerAlignment]: props.displayStyle === "header" },
+            {
+                toggle: props.dropdownSortType === "TOGGLE"
+            }
+        )}
         tabIndex={props.displayStyle === "header" ? props.tabIndex : undefined}
         onClick={props.displayStyle === "header" ? props.onClickHeader : undefined}
         onKeyDown={
