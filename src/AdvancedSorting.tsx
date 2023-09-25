@@ -69,6 +69,8 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
             onClickHeader={onClickHeader}
             onSelectDropdown={onSelectDropdown}
             ariaLabel={props.ariaLabel?.value as string}
+            ariaLabelAsc={props.ariaLabelAsc?.value as string}
+            ariaLabelDesc={props.ariaLabelDesc?.value as string}
             ascendingIcon={props.ascendingIcon?.value || { type: "glyph", iconClass: "glyphicon-arrow-up" }}
             descendingIcon={props.descendingIcon?.value || { type: "glyph", iconClass: "glyphicon-arrow-down" }}
             sortAttribute={props.sortAttribute.value as string}

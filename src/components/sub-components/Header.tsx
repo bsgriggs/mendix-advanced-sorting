@@ -18,8 +18,7 @@ const Header = (props: headerProps): ReactElement => (
         </span>
         {props.isCurrentlySorted && (
             <Fragment>
-                {props.sortAscending && <Icon icon={props.ascendingIcon} />}
-                {props.sortAscending === false && <Icon icon={props.descendingIcon} />}
+                {props.sortAscending ? <Icon icon={props.ascendingIcon} /> : <Icon icon={props.descendingIcon} />}
             </Fragment>
         )}
     </Fragment>

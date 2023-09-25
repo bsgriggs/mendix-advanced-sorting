@@ -23,6 +23,8 @@ export interface DropdownValuesType {
 
 export type HeaderAlignmentEnum = "left" | "middle" | "right";
 
+export type ToggleAlignmentEnum = "LEFT" | "RIGHT";
+
 export interface DropdownValuesPreviewType {
     optionCaption: string;
     dropdownDefaultOption: string;
@@ -50,8 +52,11 @@ export interface AdvancedSortingContainerProps {
     dynamicSortAscending: ListAttributeValue<boolean>;
     headerAlignment: HeaderAlignmentEnum;
     ariaLabel?: DynamicValue<string>;
+    ariaLabelAsc?: DynamicValue<string>;
+    ariaLabelDesc?: DynamicValue<string>;
     ascendingIcon?: DynamicValue<WebIcon>;
     descendingIcon?: DynamicValue<WebIcon>;
+    toggleAlignment: ToggleAlignmentEnum;
 }
 
 export interface AdvancedSortingPreviewProps {
@@ -72,6 +77,9 @@ export interface AdvancedSortingPreviewProps {
     dynamicSortAscending: string;
     headerAlignment: HeaderAlignmentEnum;
     ariaLabel: string;
-    ascendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
-    descendingIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    ariaLabelAsc: string;
+    ariaLabelDesc: string;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    toggleAlignment: ToggleAlignmentEnum;
 }

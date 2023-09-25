@@ -35,7 +35,6 @@ export const preview = (props: AdvancedSortingPreviewProps): ReactNode => {
             attributeName={props.attributeName}
             onClickHeader={() => {}}
             onSelectDropdown={() => {}}
-            ariaLabel={props.ariaLabel}
             ascendingIcon={
                 props.ascendingIcon !== null
                     ? (props.ascendingIcon as WebIcon)

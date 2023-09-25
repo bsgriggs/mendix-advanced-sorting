@@ -1,8 +1,8 @@
 import { ReactElement, createElement, ChangeEvent, useEffect, useMemo, Fragment } from "react";
 import DropdownValue from "../../../typings/DropdownValue";
-import { Icon } from "mendix/components/web/Icon";
 import { WebIcon } from "mendix";
-import { DropdownSortTypeEnum } from "typings/AdvancedSortingProps";
+import { DropdownSortTypeEnum, ToggleAlignmentEnum } from "typings/AdvancedSortingProps";
+import ToggleButton from "./ToggleButton";
 
 interface DropdownProps {
     id: string;
@@ -11,11 +11,14 @@ interface DropdownProps {
     tabIndex: number;
     sortAttribute: string;
     sortAscending: boolean;
+    ariaLabelAsc: string;
     ascendingIcon: WebIcon;
+    ariaLabelDesc: string;
     descendingIcon: WebIcon;
     dropdownValues: DropdownValue[];
     onSelectDropdown: (sortAttribute: string, sortAscending: boolean) => void;
     dropdownSortType: DropdownSortTypeEnum;
+    toggleAlignment: ToggleAlignmentEnum;
 }
 
 const Dropdown = (props: DropdownProps): ReactElement => {
@@ -50,14 +53,15 @@ const Dropdown = (props: DropdownProps): ReactElement => {
     );
     return (
         <Fragment>
-            {props.dropdownSortType === "TOGGLE" && (
-                <button
-                    className="btn mx-button mx-name-actionButton29 btn-default"
+            {props.dropdownSortType === "TOGGLE" && props.toggleAlignment === "LEFT" && (
+                <ToggleButton
+                    tabIndex={props.tabIndex}
+                    ariaLabel={props.sortAscending ? props.ariaLabelAsc : props.ariaLabelDesc}
+                    ascendingIcon={props.ascendingIcon}
+                    descendingIcon={props.descendingIcon}
+                    sortAscending={props.sortAscending}
                     onClick={() => props.onSelectDropdown(currentValue.sortAttribute, !props.sortAscending)}
-                >
-                    {props.sortAscending && <Icon icon={props.ascendingIcon} />}
-                    {props.sortAscending === false && <Icon icon={props.descendingIcon} />}
-                </button>
+                />
             )}
 
             <select
@@ -88,6 +92,16 @@ const Dropdown = (props: DropdownProps): ReactElement => {
                     </option>
                 ))}
             </select>
+            {props.dropdownSortType === "TOGGLE" && props.toggleAlignment === "RIGHT" && (
+                <ToggleButton
+                    tabIndex={props.tabIndex}
+                    ariaLabel={props.sortAscending ? props.ariaLabelAsc : props.ariaLabelDesc}
+                    ascendingIcon={props.ascendingIcon}
+                    descendingIcon={props.descendingIcon}
+                    sortAscending={props.sortAscending}
+                    onClick={() => props.onSelectDropdown(currentValue.sortAttribute, !props.sortAscending)}
+                />
+            )}
         </Fragment>
     );
 };

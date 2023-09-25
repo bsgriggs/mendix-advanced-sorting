@@ -9,7 +9,7 @@ $outline: -webkit-focus-ring-color auto 1px;
         }
     }
     &.display-dropdown {
-        &.toggle {
+        &.toggle-left {
             button {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
@@ -18,6 +18,17 @@ $outline: -webkit-focus-ring-color auto 1px;
             select {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
+            }
+        }
+        &.toggle-right {
+            button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-left: none;
+            }
+            select {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
             }
         }
         &:focus-visible {

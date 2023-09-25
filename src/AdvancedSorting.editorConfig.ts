@@ -36,7 +36,13 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
     // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
     switch (_values.displayStyle) {
         case "header":
-            hidePropertiesIn(defaultProperties, _values, ["dropdownValues", "dropdownSource", "dropdownSortType"]);
+            hidePropertiesIn(defaultProperties, _values, [
+                "dropdownValues",
+                "dropdownSource",
+                "dropdownSortType",
+                "ariaLabelAsc",
+                "ariaLabelDesc"
+            ]);
             hidePropertiesIn(defaultProperties, _values, [
                 "dynamicAttributeName",
                 "dynamicCaption",

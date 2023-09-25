@@ -10,14 +10,14 @@
         <propertyGroup caption="General">
             <propertyGroup caption="Data">
                 <property key="sortAttribute" type="attribute" required="true">
-                    <caption>Sort Attribute</caption>
+                    <caption>Sort attribute</caption>
                     <description>String attribute that gets set as the Attribute Name</description>
                     <attributeTypes>
                         <attributeType name="String" />
                     </attributeTypes>
                 </property>
                 <property key="sortAscending" type="attribute" required="true">
-                    <caption>Sort Ascending</caption>
+                    <caption>Sort ascending</caption>
                     <description>Boolean attribute of the sort direction (true = asc, false = desc)</description>
                     <attributeTypes>
                         <attributeType name="Boolean" />
@@ -32,7 +32,7 @@
             </propertyGroup>
             <propertyGroup caption="Type">
                 <property key="displayStyle" type="enumeration" defaultValue="header">
-                    <caption>Display Style</caption>
+                    <caption>Display style</caption>
                     <description></description>
                     <enumerationValues>
                         <enumerationValue key="header">Header</enumerationValue>
@@ -48,16 +48,16 @@
                     </enumerationValues>
                 </property>
                 <property key="attributeName" type="expression" required="true">
-                    <caption>Attribute Name</caption>
+                    <caption>Attribute name</caption>
                     <description>The database's name for the attribute or path for associations</description>
                     <returnType type="String" />
                 </property>
                 <property key="headerContent" type="widgets" required="true">
-                    <caption>Header Content</caption>
+                    <caption>Header content</caption>
                     <description>The content shown as the header</description>
                 </property>
                 <property key="dropdownSource" type="enumeration" defaultValue="static">
-                    <caption>Dropdown Source</caption>
+                    <caption>Dropdown source</caption>
                     <description>Should the available options be a static list or dynamic from a data source</description>
                     <enumerationValues>
                         <enumerationValue key="static">Static</enumerationValue>
@@ -65,7 +65,7 @@
                     </enumerationValues>
                 </property>
                 <property key="dropdownValues" type="object" isList="true" required="true">
-                    <caption>Dropdown Values</caption>
+                    <caption>Dropdown values</caption>
                     <description></description>
                     <properties>
                         <propertyGroup caption="Dropdown Option Properties">
@@ -80,13 +80,13 @@
                                 <returnType type="Boolean" />
                             </property>
                             <property key="dropdownAttributeName" type="expression" required="true">
-                                <caption>Attribute Name</caption>
+                                <caption>Attribute name</caption>
                                 <description>The database's name for the attribute or path for associations</description>
                                 <returnType type="String" />
                             </property>
                             <property key="dropdownSortAscending" type="enumeration"
                                 defaultValue="true" required="true">
-                                <caption>Sort Ascending</caption>
+                                <caption>Sort ascending</caption>
                                 <description></description>
                                 <enumerationValues>
                                     <enumerationValue key="true">Ascending</enumerationValue>
@@ -100,7 +100,7 @@
         </propertyGroup>
         <propertyGroup caption="Dynamic Dropdown">
             <property key="dynamicDatasource" type="datasource" isList="true" required="true">
-                <caption>Dynamic Data Source</caption>
+                <caption>Dynamic Data source</caption>
                 <description>Should be a Microflow or Nanoflow that returns a list of objects with the following attributes</description>
             </property>
             <property key="dynamicCaption" type="attribute" dataSource="dynamicDatasource"
@@ -121,7 +121,7 @@
             </property>
             <property key="dynamicAttributeName" type="attribute" dataSource="dynamicDatasource"
                 required="true">
-                <caption>Attribute Name</caption>
+                <caption>Attribute name</caption>
                 <description>The database's name for the attribute or path for associations</description>
                 <attributeTypes>
                     <attributeType name="String" />
@@ -129,7 +129,7 @@
             </property>
             <property key="dynamicSortAscending" type="attribute" dataSource="dynamicDatasource"
                 required="true">
-                <caption>Sort Ascending</caption>
+                <caption>Sort ascending</caption>
                 <description>The value to set the Sort Ascending attribute when this option is selected (true = asc, false = desc)</description>
                 <attributeTypes>
                     <attributeType name="Boolean" />
@@ -139,7 +139,7 @@
         <propertyGroup caption="Customization">
             <propertyGroup caption="Style">
                 <property key="headerAlignment" type="enumeration" defaultValue="left">
-                    <caption>Alignment</caption>
+                    <caption>Header alignment</caption>
                     <description></description>
                     <enumerationValues>
                         <enumerationValue key="left">Left</enumerationValue>
@@ -151,21 +151,45 @@
             <propertyGroup caption="Text">
                 <systemProperty key="Label"></systemProperty>
                 <property key="ariaLabel" type="textTemplate" required="false">
-                    <caption>Aria label</caption>
-                    <description>Text a screen reader will say when the element has focus</description>
+                    <caption>Aria label selector</caption>
+                    <description></description>
                     <translations>
                         <translation lang="en_US">Select</translation>
+                    </translations>
+                </property>
+                <property key="ariaLabelAsc" type="textTemplate" required="false">
+                    <caption>Aria label ascending</caption>
+                    <description></description>
+                    <translations>
+                        <translation lang="en_US">Ascending</translation>
+                    </translations>
+                </property>
+                <property key="ariaLabelDesc" type="textTemplate" required="false">
+                    <caption>Aria label descending</caption>
+                    <description></description>
+                    <translations>
+                        <translation lang="en_US">Descending</translation>
                     </translations>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Icons">
                 <property key="ascendingIcon" type="icon" required="false">
-                    <caption>Ascending Icon</caption>
+                    <caption>Ascending icon</caption>
                     <description></description>
                 </property>
                 <property key="descendingIcon" type="icon" required="false">
-                    <caption>Descending Icon</caption>
+                    <caption>Descending icon</caption>
                     <description></description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Dropdown">
+                <property key="toggleAlignment" type="enumeration" defaultValue="RIGHT">
+                    <caption>Toggle alignment</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="LEFT">Left</enumerationValue>
+                        <enumerationValue key="RIGHT">Right</enumerationValue>
+                    </enumerationValues>
                 </property>
             </propertyGroup>
         </propertyGroup>

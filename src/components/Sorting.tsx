@@ -1,5 +1,10 @@
 import { ReactElement, createElement, ReactNode } from "react";
-import { DisplayStyleEnum, DropdownSortTypeEnum, HeaderAlignmentEnum } from "../../typings/AdvancedSortingProps";
+import {
+    DisplayStyleEnum,
+    DropdownSortTypeEnum,
+    HeaderAlignmentEnum,
+    ToggleAlignmentEnum
+} from "../../typings/AdvancedSortingProps";
 import DropdownValue from "../../typings/DropdownValue";
 import Header from "./sub-components/Header";
 import Dropdown from "./sub-components/Dropdown";
@@ -21,9 +26,12 @@ interface SortingProps {
     attributeName: string;
     headerAlignment: HeaderAlignmentEnum;
     dropdownValues: DropdownValue[];
+    ariaLabelAsc: string;
     ascendingIcon: WebIcon;
+    ariaLabelDesc: string;
     descendingIcon: WebIcon;
     dropdownSortType: DropdownSortTypeEnum;
+    toggleAlignment: ToggleAlignmentEnum;
 }
 
 const Sorting = (props: SortingProps): ReactElement => (
@@ -33,7 +41,7 @@ const Sorting = (props: SortingProps): ReactElement => (
             `display-${props.displayStyle}`,
             { [props.headerAlignment]: props.displayStyle === "header" },
             {
-                toggle: props.dropdownSortType === "TOGGLE"
+                [`toggle-${props.toggleAlignment.toLocaleLowerCase()}`]: props.dropdownSortType === "TOGGLE"
             }
         )}
         tabIndex={props.displayStyle === "header" ? props.tabIndex : undefined}
