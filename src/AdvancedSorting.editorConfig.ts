@@ -41,7 +41,8 @@ export function getProperties(_values: AdvancedSortingPreviewProps, defaultPrope
                 "dropdownSource",
                 "dropdownSortType",
                 "ariaLabelAsc",
-                "ariaLabelDesc"
+                "ariaLabelDesc",
+                "toggleAlignment"
             ]);
             hidePropertiesIn(defaultProperties, _values, [
                 "dynamicAttributeName",
