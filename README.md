@@ -60,15 +60,23 @@ For example, consider the following domain model from the 'TestObjects' module.
 | --- | --- |
 | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalHeader.png) | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalAssociation.png) |  
 
-### Page and Widget Setup - Header
+### Page and Widget Setup
+View the following sections based on which Display Type you want to use.
+
+<details>
+<summary><h4>Header</h4></summary>
+
 1. Set up your page similar to below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
 ![page_mendix](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix.png)  
 2. In the Advanced Sorting widgets, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**.  
 ![general header](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalHeader.png)  
 3. Set the Attribute Name as the exact database name of the attribute you want to sort. For a specific example, see the **How to set the Attribute Name** section above.  
+ 
+</details>
 
+<details>
+<summary><h4>Static Dropdown</h4></summary>
 
-### Page and Widget Setup - Static Dropdown
 1. Set up your page similar to below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
 ![page_mendix dropdopwn](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix_Dropdown.png)
 2. In the Advanced Sorting widget, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**.  
@@ -82,8 +90,12 @@ For example, consider the following domain model from the 'TestObjects' module.
 **Default?** - Determines if this value is selected when the widget loads. There should only be 1 item with default set to Yes. If no items have a default, the widget will set the first item on load.  
 **Attribute Name** - Set the exact database name of the attribute you want to sort. For a specific example, see the **How to set the Attribute Name** section above.  
 **Sort Ascending** - When the user selects this item from the dropdown, should the SortAscending attribute on the Search{Entity} be set to true or false? Ascending = true. Descending = false. This option is only available if Dropdown Sort Type is set to Data.
+ 
+</details>
 
-### Page and Widget Setup - Dynamic Dropdown
+<details>
+<summary><h4>Dynamic Dropdown</h4></summary>
+
 1. Add the following DropdownValue entity to store the data for each dropdown option.  
 ![dynamic dropdown domain](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/domainDynamicDropdown.png)  
 2. Create a Microflow/Nanoflow that creates the DropdownValue objects you want to display in the dropdown called **DS_DropdownValues**.  
@@ -101,8 +113,10 @@ For example, consider the following domain model from the 'TestObjects' module.
 **Toggle** - A toggle button will appear next to the Dropdown that can be used to toggle the sort direction. If you use this setting, you do not need the SortAscending attribute on the DropdownValue entity.  
 7. Go to the newly added Dynamic Dropdown tab. Select **DS_DropdownValues** as the Dynamic Data Source. Then select the rest of the options as the matching attribute name.  
 ![dynamic dropdown item](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/DynamicDropdown.png)  
+ 
+</details>
 
-### How to Use the Sort Attribute and Sort Ascending Set by the Widget
+### How to Use the Sort Attribute and Sort Ascending
 When the user clicks on a header or selects an option from the dropdown, the **Search{Entity}**'s SortAttribute and SortAscending will be set. You can use these values in your API, SQL, or Xpath. In my use case, I'm using the [Xpath module](https://marketplace.mendix.com/link/component/120424). So, I set the SortMap object based on the values from the **Search{Entity}** object.  
 ![microflow](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/microflow.png)
 
