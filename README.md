@@ -50,12 +50,9 @@ Inside the domain model of the entity you need to retrieve, create a non-persist
 Create a Microflow called **DS_Search{Entity}** that retrieves the list from **$currentSession** for an existing **Search{Entity}** object. If the list is not empty, head the list and return the object. Otherwise, create a new object with the association to System.Session as $currentSession and PageSize as whatever default page size you want.  
 ![DS_SearchEmployees](https://github.com/bsgriggs/pagination/blob/media_v2/DS_SearchEmployees.png)  
 
-### Page and Widget Setup - Header
+### How to set the Attribute Name
+If you are using the [Xpath module](https://marketplace.mendix.com/link/component/120424), all of the Attribute Name settings should be the exact database name of the attribute you want to sort. They are case-sensitive. If you want to sort across an association, use the format "{ModuleName}.{AssociationName}/{ModuleName}.{EntityName}/{AttributeName}".  
 
-1. Setup your page similar to how you see below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
-![page_mendix](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix.png)  
-2. In the Advanced Sorting widgets, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**, the Sort Attribute, and the Sort Ascending.  
-3. Set the Attribute Name as the exact database name of the attribute you want to sort. This is case-sensitive. If you want to sort across an association, use the format: {ModuleName}.{AssociationName}/{ModuleName}.{EntityName}/{AttributeName}.  
 For example, consider the following domain model from the 'TestObjects' module.  
 ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/domainEmployee.png)
 
@@ -63,42 +60,65 @@ For example, consider the following domain model from the 'TestObjects' module.
 | --- | --- |
 | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalHeader.png) | ![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalAssociation.png) |  
 
-4. Now when the user clicks on the headers, the **Search{Entity}**'s SortAttribute and SortAscending will be set. You can use these values in your API, SQL, or Xpath. In my use case, I'm using the [Xpath module](https://marketplace.mendix.com/link/component/120424). So, I set the SortMap object based on the values from the **Search{Entity}** object.  
-![microflow](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/microflow.png)
+### Page and Widget Setup - Header
+1. Set up your page similar to below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
+![page_mendix](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix.png)  
+2. In the Advanced Sorting widgets, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**.  
+![general header](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalHeader.png)  
+3. Set the Attribute Name as the exact database name of the attribute you want to sort. For a specific example, see the **How to set the Attribute Name** section above.  
+
 
 ### Page and Widget Setup - Static Dropdown
-![dropdown static](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Static.png)  
-Dropdown mode adds 3 more settings:  
-**Dropdown sort type** - Controls how to set the SortAscending Attribute. 
-- For Data mode, each Dropdown Values item has a direction that must be specified. See Dropdown Values for details.
-- For Toggle mode, a button will appear next to the dropdown that shows the direction and can be clicked to flip the direction. See dropdown on the right in the image below. The side the button appears on can be customized in the Customization tab -> Dropdown -> Toggle alignment.  
-![demo](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demo.png)  
-
-**Dropdown source** - Determines how the dropdown data is filled. For these setup instructions, it should be Static. For [Dynamic](https://github.com/bsgriggs/mendix-advanced-sorting/edit/master/README.md#page-and-widget-setup---dynamic-dropdown) see the next section.
-
-**Dropdown values** - The list of options in the dropdown. Each has the following 4 settings.  
-![item](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/dropdownItem.png)  
-**Caption** - The text shown in the dropdown.
-**Default?** - Determines if this value is selected when the widget loads. There should only be 1 item with default set to true. If no items have a default, the widget will set the first item on load.
-**Attribute Name** - The name of the
-**Sort Ascending** - 
+1. Set up your page similar to below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
+![page_mendix dropdopwn](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix_Dropdown.png)
+2. In the Advanced Sorting widget, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**.  
+![dropdown static](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Static.png)
+3. Decide if you want to use Dropdown Sort Type "Data" or "Toggle"  
+**Data** - The Dropdown Value's Sort Ascending setting determines what the sort direction should be.  
+**Toggle** - A toggle button will appear next to the Dropdown that can be used to toggle the sort direction.  
+4. Add all of the items you need to the Dropdown Values list.  
+![dropdown item](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/dropdownItem.png)  
+**Caption** - The text shown in the dropdown.  
+**Default?** - Determines if this value is selected when the widget loads. There should only be 1 item with default set to Yes. If no items have a default, the widget will set the first item on load.  
+**Attribute Name** - Set the exact database name of the attribute you want to sort. For a specific example, see the **How to set the Attribute Name** section above.  
+**Sort Ascending** - When the user selects this item from the dropdown, should the SortAscending attribute on the Search{Entity} be set to true or false? Ascending = true. Descending = false. This option is only available if Dropdown Sort Type is set to Data.
 
 ### Page and Widget Setup - Dynamic Dropdown
-![general](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Dynamic.png)  
-{ToDo}
-<br/>
-The remaining steps depend on whether you want a dropdown or a clickable grid header.
-<br/>
-<h4>Header</h4><br/>  
-7a. In the Advanced Sorting widgets, go to the General tab and set the Attribute Name as the name of the attribute you want sorted. This must match the name of the attribute exactly and is case sensitive. In this example, I want to sort the Year attribute from the Vehicles entity (step 2).<br/><img alt='general header' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/general-header.png' />
-<h4>Static Dropdown</h4><br/>  
-7b. Static dropdown lets you create a list of dropdown options that act as pre-sets of sorting options. Add a dropdown value and set all of the fields. Caption is the literal text that will appear as an option in the dropdown. Sort Ascending and Attribute Name are the values that will be set to the pagination object's SortAttibute and SortAscending attributes once the option is selected. Default determines if the option is selected automatically. If no default is specified, the widget will use the first option in the list.<br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/general-dropdown-static.png' /> 
-<h4>Dynamic Dropdown</h4><br/>
-7c. Dynamic dropdown lets you create the options that appear in the dropdown via a Microflow. Start by creating a new non-persistent entity called SortDropdownValue with the following attributes.<br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/domainDynamicDropdown.png' /> 
-8c. Next, create a Microflow call DS_SortDropdownValues that returns a list of SortDropdownValue objects. <br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/DS_SortDropdownValues.png' />
-9c. In the Advanced Sorting widgets, go to the Dynamic Dropdown tab and set the Dynamic Data Source as the new Microflow and the rest of the settings as the attributes from the SortDropdownValue object.<br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/dynamicDropdown.png' />
+1. Add the following DropdownValue entity to store the data for each dropdown option.  
+![dynamic dropdown domain](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/domainDynamicDropdown.png)  
+2. Create a Microflow/Nanoflow that creates the DropdownValue objects you want to display in the dropdown called **DS_DropdownValues**.  
+![DS_DropdownValues](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/DS_DropdownValues.png)  
+**Caption** - The text shown in the dropdown.  
+**_Default** - Determines if this value is selected when the widget loads. There should only be 1 item with default set to Yes. If no items have a default, the widget will set the first item on load.  
+**AttributeName** - Set the exact database name of the attribute you want to sort. For a specific example, see the **How to set the Attribute Name** section above.  
+**SortAscending** - When the user selects this item from the dropdown, should the SortAscending attribute on the Search{Entity} be set to true or false? Ascending = true. Descending = false. This option is only available if Dropdown Sort Type is set to Data.  
+4. Set up your page similar to below with the widgets above the list view. These should be inside a data view with datasource **DS_Search{Entity}**.  
+![page_mendix dropdopwn](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/demoMendix_Dropdown.png)
+5. In the Advanced Sorting widget, set Sort Attribute and Sort Ascending to the attributes on your **Search{Entity}**. Set the Refresh Action to **ACT_Pagination_Refresh**.  
+![dropdown dynamic](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/generalDropdown_Dynamic.png)
+6. Decide if you want to use Dropdown Sort Type "Data" or "Toggle"  
+**Data** - The Dropdown Value's Sort Ascending setting determines what the sort direction should be.  
+**Toggle** - A toggle button will appear next to the Dropdown that can be used to toggle the sort direction. If you use this setting, you do not need the SortAscending attribute on the DropdownValue entity.  
+7. Go to the newly added Dynamic Dropdown tab. Select **DS_DropdownValues** as the Dynamic Data Source. Then select the rest of the options as the matching attribute name.  
+![dynamic dropdown item](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/DynamicDropdown.png)  
 
-<strong>Note:</strong> If you need to sort an attribute across an association, you must include the full database path. For example, if I need to sort the Name attribute on the Make entity (step2).<br/><img alt='association' src='https://github.com/bsgriggs/mendix-advanced-sorting/blob/media/association.png' />
+### How to Use the Sort Attribute and Sort Ascending Set by the Widget
+When the user clicks on a header or selects an option from the dropdown, the **Search{Entity}**'s SortAttribute and SortAscending will be set. You can use these values in your API, SQL, or Xpath. In my use case, I'm using the [Xpath module](https://marketplace.mendix.com/link/component/120424). So, I set the SortMap object based on the values from the **Search{Entity}** object.  
+![microflow](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/microflow.png)
+
+### Customization settings
+![customization](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/customization.png)  
+**Show label** - Shows the Mendix input label. Use for Dropdowns.  
+**Aria label selector** - What the screen reader will say when focused on a header or when Show Label is disabled for dropdowns.
+**Aria label ascending** - What the screen reader will say when focused on the Toggle button and the button is ascending.  
+**Aria label descending** - What the screen reader will say when focused on the Toggle button and the button is descending.  
+**Ascending icon** - Option to customize the ascending icon.  
+**Descending icon** - Option to customize the descending icon.  
+**Toggle alignment** - Controls which side of the dropdown the Toggle button is shown.  
+
+### Common settings
+![common](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/common.png)  
+
 
 ## Demo project  
 https://widgettesting105-sandbox.mxapps.io/p/advanced-listview-controls
