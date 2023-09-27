@@ -109,12 +109,12 @@ When the user clicks on a header or selects an option from the dropdown, the **S
 ### Customization settings
 ![customization](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/customization.png)  
 **Show label** - Shows the Mendix input label. Use for Dropdowns.  
-**Aria label selector** - What the screen reader will say when focused on a header or when Show Label is disabled for dropdowns.
+**Aria label selector** - What the screen reader will say when focused on a header or when Show Label is disabled for dropdowns.  
 **Aria label ascending** - What the screen reader will say when focused on the Toggle button and the button is ascending.  
 **Aria label descending** - What the screen reader will say when focused on the Toggle button and the button is descending.  
 **Ascending icon** - Option to customize the ascending icon.  
 **Descending icon** - Option to customize the descending icon.  
-**Toggle alignment** - Controls which side of the dropdown the Toggle button is shown.  
+**Toggle alignment** - Controls which side of the dropdown the Toggle button is shown.    
 
 ### Common settings
 ![common](https://github.com/bsgriggs/mendix-advanced-sorting/blob/media_v2/common.png)  
