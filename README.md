@@ -1,5 +1,5 @@
 ## Advanced Sorting
-Reusable widget to encapsulate the math required to manually do sorting. Most for:
+Reusable widget to encapsulate the math required to manually do sorting. Most useful for:
 1. Getting data from an API that allows sorting (e.g. https://cars.com/users?sort_by=year&order=desc)
 2. SQL / OQL queries (e.g. SELECT * FROM CAR ORDER BY YEAR DESC)
 3. Creating custom grids with the [Xpath module](https://marketplace.mendix.com/link/component/120424)
