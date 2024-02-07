@@ -65,10 +65,11 @@ export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElem
             {...props}
             tabIndex={props.tabIndex || 0}
             dropdownValues={dropdownList}
+            caption={props.caption?.value as string}
             attributeName={props.attributeName?.value as string}
             onClickHeader={onClickHeader}
             onSelectDropdown={onSelectDropdown}
-            ariaLabel={props.ariaLabel?.value as string}
+            ariaLabelSort={props.ariaLabelSort?.value as string}
             ariaLabelAsc={props.ariaLabelAsc?.value as string}
             ariaLabelDesc={props.ariaLabelDesc?.value as string}
             ascendingIcon={props.ascendingIcon?.value || { type: "glyph", iconClass: "glyphicon-arrow-up" }}

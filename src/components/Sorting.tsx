@@ -1,5 +1,6 @@
-import { ReactElement, createElement, ReactNode } from "react";
+import { ReactElement, createElement, ReactNode, useMemo } from "react";
 import {
+    ContentTypeEnum,
     DisplayStyleEnum,
     DropdownSortTypeEnum,
     HeaderAlignmentEnum,
@@ -20,8 +21,10 @@ interface SortingProps {
     sortAscending: boolean;
     onClickHeader: () => void;
     onSelectDropdown: (newSortAttribute: string, newSortAscending: boolean) => void;
-    ariaLabel: string;
-    headerContent: ReactNode;
+    ariaLabelSort: string;
+    contentType: ContentTypeEnum;
+    caption?: string;
+    headerContent?: ReactNode;
     displayStyle: DisplayStyleEnum;
     attributeName: string;
     headerAlignment: HeaderAlignmentEnum;
@@ -34,35 +37,66 @@ interface SortingProps {
     toggleAlignment: ToggleAlignmentEnum;
 }
 
-const Sorting = (props: SortingProps): ReactElement => (
-    <div
-        className={classNames(
-            "advanced-sorting",
-            `display-${props.displayStyle}`,
-            { [props.headerAlignment]: props.displayStyle === "header" },
-            {
-                [`toggle-${props.toggleAlignment.toLocaleLowerCase()}`]: props.dropdownSortType === "TOGGLE"
-            }
-        )}
-        tabIndex={props.displayStyle === "header" ? props.tabIndex : undefined}
-        onClick={props.displayStyle === "header" ? props.onClickHeader : undefined}
-        onKeyDown={
+const Sorting = (props: SortingProps): ReactElement => {
+    const isCurrentlySorted = useMemo(
+        () => props.attributeName === props.sortAttribute,
+        [props.attributeName, props.sortAttribute]
+    );
+    const headerAriaLabel = useMemo(
+        () =>
             props.displayStyle === "header"
-                ? event => {
-                      if (event.key === "Enter" || event.key === " ") {
-                          props.onClickHeader();
+                ? props.ariaLabelSort +
+                  " " +
+                  props.caption +
+                  " " +
+                  (isCurrentlySorted
+                      ? props.sortAscending
+                          ? props.ariaLabelDesc
+                          : props.ariaLabelAsc
+                      : props.sortAscending
+                      ? props.ariaLabelAsc
+                      : props.ariaLabelDesc)
+                : undefined,
+        [
+            props.displayStyle,
+            props.ariaLabelSort,
+            props.caption,
+            isCurrentlySorted,
+            props.sortAscending,
+            props.ariaLabelAsc,
+            props.ariaLabelDesc
+        ]
+    );
+
+    return (
+        <div
+            className={classNames(
+                "advanced-sorting",
+                `display-${props.displayStyle}`,
+                { [props.headerAlignment]: props.displayStyle === "header" },
+                {
+                    [`toggle-${props.toggleAlignment.toLocaleLowerCase()}`]: props.dropdownSortType === "TOGGLE"
+                }
+            )}
+            tabIndex={props.displayStyle === "header" ? props.tabIndex : undefined}
+            onClick={props.displayStyle === "header" ? props.onClickHeader : undefined}
+            onKeyDown={
+                props.displayStyle === "header"
+                    ? event => {
+                          if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              props.onClickHeader();
+                          }
                       }
-                  }
-                : undefined
-        }
-        aria-label={props.displayStyle === "header" ? props.ariaLabel : undefined}
-        role={props.displayStyle === "header" ? "button" : undefined}
-    >
-        {props.displayStyle === "header" && (
-            <Header {...props} isCurrentlySorted={props.attributeName === props.sortAttribute} />
-        )}
-        {props.displayStyle === "dropdown" && <Dropdown {...props} />}
-    </div>
-);
+                    : undefined
+            }
+            aria-label={headerAriaLabel}
+            role={props.displayStyle === "header" ? "button" : undefined}
+        >
+            {props.displayStyle === "header" && <Header {...props} isCurrentlySorted={isCurrentlySorted} />}
+            {props.displayStyle === "dropdown" && <Dropdown {...props} />}
+        </div>
+    );
+};
 
 export default Sorting;

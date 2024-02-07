@@ -47,6 +47,18 @@
                         <enumerationValue key="TOGGLE">Toggle</enumerationValue>
                     </enumerationValues>
                 </property>
+                <property key="contentType" type="enumeration" defaultValue="TEXT">
+                    <caption>Content type</caption>
+                    <description></description>
+                    <enumerationValues>
+                        <enumerationValue key="TEXT">Text</enumerationValue>
+                        <enumerationValue key="CUSTOM">Custom</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="caption" type="textTemplate" required="true">
+                    <caption>Caption</caption>
+                    <description>Text shown in the header and / or read by screen readers</description>
+                </property>
                 <property key="attributeName" type="expression" required="true">
                     <caption>Attribute name</caption>
                     <description>The database's name for the attribute or path for associations</description>
@@ -150,21 +162,21 @@
             </propertyGroup>
             <propertyGroup caption="Text">
                 <systemProperty key="Label"></systemProperty>
-                <property key="ariaLabel" type="textTemplate" required="false">
-                    <caption>Aria label selector</caption>
+                <property key="ariaLabelSort" type="textTemplate" required="true">
+                    <caption>Aria label sort</caption>
                     <description></description>
                     <translations>
-                        <translation lang="en_US">Select</translation>
+                        <translation lang="en_US">Sort</translation>
                     </translations>
                 </property>
-                <property key="ariaLabelAsc" type="textTemplate" required="false">
+                <property key="ariaLabelAsc" type="textTemplate" required="true">
                     <caption>Aria label ascending</caption>
                     <description></description>
                     <translations>
                         <translation lang="en_US">Ascending</translation>
                     </translations>
                 </property>
-                <property key="ariaLabelDesc" type="textTemplate" required="false">
+                <property key="ariaLabelDesc" type="textTemplate" required="true">
                     <caption>Aria label descending</caption>
                     <description></description>
                     <translations>

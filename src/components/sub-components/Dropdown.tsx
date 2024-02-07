@@ -7,7 +7,7 @@ import ToggleButton from "./ToggleButton";
 interface DropdownProps {
     id: string;
     name: string;
-    ariaLabel?: string;
+    ariaLabelSort: string;
     tabIndex: number;
     sortAttribute: string;
     sortAscending: boolean;
@@ -56,7 +56,13 @@ const Dropdown = (props: DropdownProps): ReactElement => {
             {props.dropdownSortType === "TOGGLE" && props.toggleAlignment === "LEFT" && (
                 <ToggleButton
                     tabIndex={props.tabIndex}
-                    ariaLabel={props.sortAscending ? props.ariaLabelAsc : props.ariaLabelDesc}
+                    ariaLabel={
+                        props.ariaLabelSort +
+                        " " +
+                        currentValue.caption +
+                        " " +
+                        (props.sortAscending ? props.ariaLabelDesc : props.ariaLabelAsc)
+                    }
                     ascendingIcon={props.ascendingIcon}
                     descendingIcon={props.descendingIcon}
                     sortAscending={props.sortAscending}
@@ -70,7 +76,13 @@ const Dropdown = (props: DropdownProps): ReactElement => {
                 className="form-control"
                 aria-haspopup="listbox"
                 aria-labelledby={props.id + "-label"} // for screen readers
-                aria-label={props.ariaLabel}
+                aria-label={
+                    props.ariaLabelSort +
+                    " " +
+                    currentValue.caption +
+                    " " +
+                    (props.sortAscending ? props.ariaLabelAsc : props.ariaLabelDesc)
+                }
                 onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     const dropdownValue =
                         props.dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||

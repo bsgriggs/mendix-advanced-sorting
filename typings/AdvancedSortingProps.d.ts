@@ -10,6 +10,8 @@ export type DisplayStyleEnum = "header" | "dropdown";
 
 export type DropdownSortTypeEnum = "DATA" | "TOGGLE";
 
+export type ContentTypeEnum = "TEXT" | "CUSTOM";
+
 export type DropdownSourceEnum = "static" | "dynamic";
 
 export type DropdownSortAscendingEnum = "true" | "false";
@@ -41,6 +43,8 @@ export interface AdvancedSortingContainerProps {
     refreshAction?: ActionValue;
     displayStyle: DisplayStyleEnum;
     dropdownSortType: DropdownSortTypeEnum;
+    contentType: ContentTypeEnum;
+    caption: DynamicValue<string>;
     attributeName: DynamicValue<string>;
     headerContent: ReactNode;
     dropdownSource: DropdownSourceEnum;
@@ -51,9 +55,9 @@ export interface AdvancedSortingContainerProps {
     dynamicAttributeName: ListAttributeValue<string>;
     dynamicSortAscending: ListAttributeValue<boolean>;
     headerAlignment: HeaderAlignmentEnum;
-    ariaLabel?: DynamicValue<string>;
-    ariaLabelAsc?: DynamicValue<string>;
-    ariaLabelDesc?: DynamicValue<string>;
+    ariaLabelSort: DynamicValue<string>;
+    ariaLabelAsc: DynamicValue<string>;
+    ariaLabelDesc: DynamicValue<string>;
     ascendingIcon?: DynamicValue<WebIcon>;
     descendingIcon?: DynamicValue<WebIcon>;
     toggleAlignment: ToggleAlignmentEnum;
@@ -66,6 +70,8 @@ export interface AdvancedSortingPreviewProps {
     refreshAction: {} | null;
     displayStyle: DisplayStyleEnum;
     dropdownSortType: DropdownSortTypeEnum;
+    contentType: ContentTypeEnum;
+    caption: string;
     attributeName: string;
     headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     dropdownSource: DropdownSourceEnum;
@@ -76,7 +82,7 @@ export interface AdvancedSortingPreviewProps {
     dynamicAttributeName: string;
     dynamicSortAscending: string;
     headerAlignment: HeaderAlignmentEnum;
-    ariaLabel: string;
+    ariaLabelSort: string;
     ariaLabelAsc: string;
     ariaLabelDesc: string;
     ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
