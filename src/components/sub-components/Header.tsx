@@ -21,8 +21,10 @@ const Header = (props: headerProps): ReactElement => (
         </span>
         {props.isCurrentlySorted && (
             <Fragment>
+                {/* eslint-disable  */}
                 {/* @ts-ignore */}
                 {props.sortAscending ? <Icon icon={props.ascendingIcon} /> : <Icon icon={props.descendingIcon} />}
+                {/* eslint-enable */}
             </Fragment>
         )}
     </Fragment>

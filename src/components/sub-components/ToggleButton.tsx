@@ -18,6 +18,7 @@ const ToggleButton = (props: ToggleButtonProps): ReactElement => (
         title={props.ariaLabel}
         aria-label={props.ariaLabel}
     >
+        {/* eslint-disable */}
         {props.sortAscending ? (
             // @ts-ignore
             <Icon icon={props.ascendingIcon} />
@@ -25,6 +26,7 @@ const ToggleButton = (props: ToggleButtonProps): ReactElement => (
             // @ts-ignore
             props.sortAscending === false && <Icon icon={props.descendingIcon} />
         )}
+        {/* eslint-enable */}
     </button>
 );
 

@@ -59,7 +59,7 @@ const Dropdown = (props: DropdownProps): ReactElement => {
                       props.sortAscending ? props.ariaLabelDesc : props.ariaLabelAsc
                   }`
                 : undefined,
-        [currentValue]
+        [currentValue, props.ariaLabelSort, props.sortAscending, props.ariaLabelAsc, props.ariaLabelDesc]
     );
 
     return (

@@ -1,7 +1,7 @@
 import { ReactElement, createElement, useCallback, useMemo } from "react";
 import { AdvancedSortingContainerProps } from "../typings/AdvancedSortingProps";
 import "./ui/AdvancedSorting.scss";
-import DropdownValue from "typings/DropdownValue";
+import DropdownValue from "../typings/DropdownValue";
 import Sorting from "./components/Sorting";
 
 export function AdvancedSorting(props: AdvancedSortingContainerProps): ReactElement {
