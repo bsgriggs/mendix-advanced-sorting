@@ -2,7 +2,7 @@ import { ReactElement, createElement, Fragment, ReactNode } from "react";
 import { Icon } from "mendix/components/web/Icon";
 import { WebIcon } from "mendix";
 import classNames from "classnames";
-import { ContentTypeEnum } from "typings/AdvancedSortingProps";
+import { ContentTypeEnum } from "../../../typings/AdvancedSortingProps";
 
 interface headerProps {
     contentType: ContentTypeEnum;
@@ -21,6 +21,7 @@ const Header = (props: headerProps): ReactElement => (
         </span>
         {props.isCurrentlySorted && (
             <Fragment>
+                {/* @ts-ignore */}
                 {props.sortAscending ? <Icon icon={props.ascendingIcon} /> : <Icon icon={props.descendingIcon} />}
             </Fragment>
         )}

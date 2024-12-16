@@ -1,7 +1,7 @@
 import { ReactElement, createElement, ChangeEvent, useEffect, useMemo, Fragment } from "react";
 import DropdownValue from "../../../typings/DropdownValue";
 import { WebIcon } from "mendix";
-import { DropdownSortTypeEnum, ToggleAlignmentEnum } from "typings/AdvancedSortingProps";
+import { DropdownSortTypeEnum, ToggleAlignmentEnum } from "../../../typings/AdvancedSortingProps";
 import ToggleButton from "./ToggleButton";
 
 interface DropdownProps {
@@ -38,7 +38,7 @@ const Dropdown = (props: DropdownProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [defaultOption]);
 
-    const currentValue: DropdownValue = useMemo(
+    const currentValue: DropdownValue | undefined = useMemo(
         () =>
             props.dropdownSortType === "DATA"
                 ? props.dropdownValues.find(
@@ -51,18 +51,23 @@ const Dropdown = (props: DropdownProps): ReactElement => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [props.dropdownValues, props.sortAscending, props.sortAttribute]
     );
+
+    const currentValueAriaLabel: string | undefined = useMemo(
+        () =>
+            currentValue
+                ? `${props.ariaLabelSort} ${currentValue.caption} ${
+                      props.sortAscending ? props.ariaLabelDesc : props.ariaLabelAsc
+                  }`
+                : undefined,
+        [currentValue]
+    );
+
     return (
         <Fragment>
             {props.dropdownSortType === "TOGGLE" && props.toggleAlignment === "LEFT" && (
                 <ToggleButton
                     tabIndex={props.tabIndex}
-                    ariaLabel={
-                        props.ariaLabelSort +
-                        " " +
-                        currentValue.caption +
-                        " " +
-                        (props.sortAscending ? props.ariaLabelDesc : props.ariaLabelAsc)
-                    }
+                    ariaLabel={currentValueAriaLabel}
                     ascendingIcon={props.ascendingIcon}
                     descendingIcon={props.descendingIcon}
                     sortAscending={props.sortAscending}
@@ -76,13 +81,7 @@ const Dropdown = (props: DropdownProps): ReactElement => {
                 className="form-control"
                 aria-haspopup="listbox"
                 aria-labelledby={props.id + "-label"} // for screen readers
-                aria-label={
-                    props.ariaLabelSort +
-                    " " +
-                    currentValue.caption +
-                    " " +
-                    (props.sortAscending ? props.ariaLabelAsc : props.ariaLabelDesc)
-                }
+                aria-label={currentValueAriaLabel}
                 onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     const dropdownValue =
                         props.dropdownValues.find(dropdownValue => dropdownValue.caption === event.target.value) ||

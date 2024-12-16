@@ -3,7 +3,7 @@ import { Icon } from "mendix/components/web/Icon";
 import { WebIcon } from "mendix";
 
 interface ToggleButtonProps {
-    ariaLabel: string;
+    ariaLabel: string | undefined;
     tabIndex: number;
     sortAscending: boolean;
     ascendingIcon: WebIcon;
@@ -19,8 +19,10 @@ const ToggleButton = (props: ToggleButtonProps): ReactElement => (
         aria-label={props.ariaLabel}
     >
         {props.sortAscending ? (
+            // @ts-ignore
             <Icon icon={props.ascendingIcon} />
         ) : (
+            // @ts-ignore
             props.sortAscending === false && <Icon icon={props.descendingIcon} />
         )}
     </button>

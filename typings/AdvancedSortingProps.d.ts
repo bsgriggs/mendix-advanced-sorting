@@ -1,7 +1,7 @@
 /**
  * This file was generated from AdvancedSorting.xml
  * WARNING: All changes made to this file will be overwritten
- * @author Mendix UI Content Team
+ * @author Mendix Widgets Framework Team
  */
 import { ComponentType, ReactNode } from "react";
 import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue, WebIcon } from "mendix";
@@ -73,10 +73,10 @@ export interface AdvancedSortingPreviewProps {
     contentType: ContentTypeEnum;
     caption: string;
     attributeName: string;
-    headerContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
+    headerContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dropdownSource: DropdownSourceEnum;
     dropdownValues: DropdownValuesPreviewType[];
-    dynamicDatasource: {} | { type: string } | null;
+    dynamicDatasource: {} | { caption: string } | { type: string } | null;
     dynamicCaption: string;
     dynamicDefaultOption: string;
     dynamicAttributeName: string;
@@ -85,7 +85,7 @@ export interface AdvancedSortingPreviewProps {
     ariaLabelSort: string;
     ariaLabelAsc: string;
     ariaLabelDesc: string;
-    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    ascendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
+    descendingIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; iconUrl: string; } | { type: "icon"; iconClass: string; } | undefined;
     toggleAlignment: ToggleAlignmentEnum;
 }
