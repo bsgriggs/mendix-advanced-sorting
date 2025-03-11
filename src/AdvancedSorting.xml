@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Advanced Sorting</name>
     <description>Reusable widget to encapsulate the logic needed to manually do sorting</description>
-    <icon />
+    <helpUrl>https://github.com/bsgriggs/mendix-advanced-sorting/blob/master/README.md</helpUrl>
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="Data">

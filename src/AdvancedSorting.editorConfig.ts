@@ -164,7 +164,7 @@ export function check(_values: AdvancedSortingPreviewProps): Problem[] {
     if (_values.refreshAction === null) {
         errors.push({
             property: `refreshAction`,
-            message: `Refresh action is required. Should be a Microflow with 'Refresh in Client' on the parent DataView's object`,
+            message: `Refresh action is required. Should be a Nanoflow with 'Refresh Object' from Nanoflow Commons or a Microflow with 'Refresh in Client' on the parent DataView's object`,
             url: "https://github.com/bsgriggs/mendix-advanced-sorting/blob/master/README.md"
         });
     }

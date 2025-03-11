@@ -1,7 +1,7 @@
 {
     "name": "advancedsorting",
     "widgetName": "AdvancedSorting",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Reusable widget to encapsulate the logic needed to manually do sorting",
     "copyright": "Benjamin Griggs 2022",
     "author": "Benjamin Griggs",
