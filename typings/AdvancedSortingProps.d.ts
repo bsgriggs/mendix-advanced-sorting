@@ -65,6 +65,8 @@ export interface AdvancedSortingContainerProps {
 
 export interface AdvancedSortingPreviewProps {
     readOnly: boolean;
+    renderMode: "design" | "xray" | "structure";
+    translate: (text: string) => string;
     sortAttribute: string;
     sortAscending: string;
     refreshAction: {} | null;
